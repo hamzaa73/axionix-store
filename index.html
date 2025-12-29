@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXIONIX | تجربة الفخامة المطلقة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        .luxury-gradient {
+            background: linear-gradient(135deg, #eab308 0%, #fef08a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-nav {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .cart-badge {
+            font-size: 10px;
+            padding: 2px 5px;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        .product-title {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .chat-container {
+            height: 350px;
+            scrollbar-width: thin;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .hidden-section { display: none; }
+        .luxury-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .luxury-input:focus {
+            border-color: #eab308;
+            outline: none;
+            box-shadow: 0 0 10px rgba(234, 179, 8, 0.1);
+        }
+        /* Mobile Menu styles */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .menu-open { transform: translateX(0) !important; }
+
+        /* Review Styles */
+        .star-rating {
+            color: #eab308;
+        }
+        .review-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-right: 3px solid #eab308;
+        }
+
+        /* ==================================== */
+        /* تصميم بطاقة المنتج الفاخر */
+        /* ==================================== */
+        .product-card {
+            padding: 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15); /* حواف واضحة بوضوح */
+            background: rgba(30, 30, 30, 0.7); /* خلفية داكنة جميلة */
+            backdrop-filter: blur(10px); /* تأثير زجاجي فاخر */
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); /* ظل عميق */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover {
+            border-color: rgba(234, 179, 8, 0.5); /* حواف صفراء لامعة عند التمرير */
+            box-shadow: 0 18px 50px rgba(234, 179, 8, 0.2); /* ظل دافئ */
+            transform: translateY(-6px); /* حركة أنيقة للأعلى */
+        }
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px; /* زوايا دائرية للصورة */
+        }
+        .product-title {
+            font-size: 14px;
+            color: #f0f0f0; /* لون أبيض ناعم */
+        }
+        .product-price {
+            font-size: 13px;
+        }
+        .product-card button {
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+
+        /* ==================================== */
+        /* تبويبات الفلترة */
+        /* ==================================== */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .tab {
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: #111;
+            color: #aaa;
+            font-size: 12px;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+        .tab.active {
+            background: white;
+            color: black;
+            font-weight: bold;
+            border-color: white;
+        }
+    </style>
+</head>
+<body class="selection:bg-yellow-500 selection:text-black">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-[100] transition-all duration-300 py-4 md:py-6">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between relative">
+            <div class="hidden md:flex items-center space-x-6 space-x-reverse">
+                <button onclick="showPage('home')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">الرئيسية</button>
+                <button onclick="showPage('shop')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">المتجر</button>
+                <button onclick="showPage('story')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">قصتنا</button>
+            </div>
+
+            <button onclick="toggleMobileMenu()" class="md:hidden text-zinc-400 hover:text-white text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+                <h1 onclick="showPage('home')" class="text-2xl md:text-3xl font-black cursor-pointer tracking-tighter">
+                    AXIONIX<span class="text-yellow-500">.</span>
+                </h1>
+            </div>
+            
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <button onclick="toggleSearch()" class="text-zinc-400 hover:text-white"><i class="fas fa-search"></i></button>
+                <button onclick="showPage('cart')" class="relative text-zinc-400 hover:text-white">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-yellow-500 text-black cart-badge font-bold rounded-full hidden">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Side Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[150] bg-black translate-x-full md:hidden flex flex-col items-center justify-center space-y-8 text-2xl font-bold">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-zinc-500 text-3xl">&times;</button>
+        <button onclick="showPage('home'); toggleMobileMenu();" class="hover:text-yellow-500">الرئيسية</button>
+        <button onclick="showPage('shop'); toggleMobileMenu();" class="hover:text-yellow-500">المتجر</button>
+        <button onclick="showPage('story'); toggleMobileMenu();" class="hover:text-yellow-500">قصتنا</button>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-[200] bg-yellow-500 text-black px-6 py-3 rounded-full font-bold shadow-2xl transition-all opacity-0 pointer-events-none text-sm whitespace-nowrap">
+        تم الإضافة للسلة بنجاح
+    </div>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="fixed inset-0 z-[150] bg-black/95 hidden flex flex-col p-6 animate-fade-in">
+        <button onclick="toggleSearch()" class="absolute top-6 right-6 text-zinc-500 hover:text-white text-4xl">&times;</button>
+        <div class="max-w-4xl mx-auto w-full pt-20">
+            <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="ابحث عن الفخامة..." 
+                   class="w-full bg-transparent border-b border-white/10 pb-4 text-2xl md:text-5xl outline-none font-light">
+            <div id="search-results" class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto"></div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <main id="home-page" class="page-content animate-fade-in">
+        <section class="relative h-[100svh] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2000" class="w-full h-full object-cover opacity-30 grayscale">
+                <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+            </div>
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto space-y-6 md:space-y-8">
+                <h1 class="text-4xl md:text-8xl font-black tracking-tighter leading-tight">
+                    هذا ليس متجراً.<br/>
+                    <span class="luxury-gradient text-3xl md:text-7xl">هذه تجربة فاخرة.</span>
+                </h1>
+                <p class="text-sm md:text-xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed">
+                    اكتشف مجموعة مختارة بعناية من أرقى المنتجات العالمية المصممة خصيصاً لمن يقدرون التميز.
+                </p>
+                <div class="pt-4">
+                    <button onclick="showPage('shop')" class="px-8 md:px-12 py-4 md:py-5 bg-yellow-500 text-black font-bold uppercase tracking-widest rounded-full hover:scale-105 transition-all text-sm md:text-base">
+                        استعرض المتجر <i class="fas fa-arrow-left mr-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+            <div class="mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4">المختارات الراقية</h2>
+                <div class="w-16 h-1 bg-yellow-500"></div>
+            </div>
+            <div id="featured-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10"></div>
+        </section>
+    </main>
+
+    <!-- Story Page -->
+    <main id="story-page" class="page-content hidden-section pt-24 md:pt-32 animate-fade-in">
+        <div class="max-w-5xl mx-auto px-6 pb-20">
+            <div class="text-center space-y-6 mb-16 md:mb-24">
+                <h1 class="text-4xl md:text-7xl font-black">حكايتنا <span class="text-yellow-500">.</span></h1>
+                <p class="text-zinc-400 text-sm md:text-xl leading-relaxed max-w-3xl mx-auto font-light">
+                    بدأت رحلتنا من مقاعد الدراسة، كفريق طموح يهدف لدمج الابتكار التقني بجمالية التصميم العصري.
+                </p>
+            </div>
+            <!-- Members Grid ... -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-20">
+                <div class="rounded-3xl overflow-hidden aspect-video lg:aspect-square">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000" class="w-full h-full object-cover grayscale opacity-70">
+                </div>
+                <div class="space-y-6">
+                    <h2 class="text-2xl md:text-3xl font-bold">رؤية أكسيونكس</h2>
+                    <p class="text-zinc-400 leading-relaxed font-light text-base md:text-lg">
+                        نحن في فريق "أكسيونكس التقني" نؤمن بأن الفخامة لا تتعلق فقط بالسعر، بل بالدقة والاهتمام بأدق التفاصيل. كل منتج في متجرنا هو قصة تميز نرويها لكم.
+                    </p>
+                    <div class="h-1 w-20 bg-yellow-500"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="p-6 border border-white/5 rounded-2xl text-center bg-zinc-900/20">
+                    <div class="w-16 h-16 bg-zinc-800 rounded-xl mx-auto mb-4 flex items-center justify-center text-yellow-500"><i class="fas fa-code"></i></div>
+                    <h3 class="font-bold">حمزة المقبلي</h3>
+                    <p class="text-zinc-500 text-xs mt-1">تطوير وابتكار</p>
+                </div>
+                <div class="p-6 border border-white/5 rounded-2xl text-center bg-zinc-900/20">
+                    <div class="w-16 h-16 bg-zinc-800 rounded-xl mx-auto mb-4 flex items-center justify-center text-yellow-500"><i class="fas fa-terminal"></i></div>
+                    <h3 class="font-bold">مهند البحيري</h3>
+                    <p class="text-zinc-500 text-xs mt-1">برمجيات ذكية</p>
+                </div>
+                <div class="p-6 border border-white/5 rounded-2xl text-center bg-zinc-900/20">
+                    <div class="w-16 h-16 bg-zinc-800 rounded-xl mx-auto mb-4 flex items-center justify-center text-yellow-500"><i class="fas fa-microchip"></i></div>
+                    <h3 class="font-bold">محمد هيوه</h3>
+                    <p class="text-zinc-500 text-xs mt-1">حلول تقنية</p>
+                </div>
+                <div class="p-6 border border-white/5 rounded-2xl text-center bg-zinc-900/20">
+                    <div class="w-16 h-16 bg-zinc-800 rounded-xl mx-auto mb-4 flex items-center justify-center text-yellow-500"><i class="fas fa-laptop-code"></i></div>
+                    <h3 class="font-bold">محمد المقبلي</h3>
+                    <p class="text-zinc-500 text-xs mt-1">تجربة المستخدم</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Shop Page -->
+    <main id="shop-page" class="page-content hidden-section pt-24 md:pt-32 animate-fade-in">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 pb-20">
+
+        <!-- Header -->
+        <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+                <h1 class="text-3xl md:text-5xl font-bold">المتجر الكامل</h1>
+                <p class="text-zinc-500 mt-2 text-sm">استكشف عالم أكسيونكس الحصري.</p>
+            </div>
+        </div>
+
+        <!-- Tabs التبويبات الجديدة -->
+        <div class="tabs">
+            <button class="tab active" onclick="filterProducts('all')">الكل</button>
+            <button class="tab" onclick="filterProducts('Watches')">ساعات</button>
+            <button class="tab" onclick="filterProducts('Fragrance')">عطور</button>
+            <button class="tab" onclick="filterProducts('Leather Goods')">جلديات</button>
+            <button class="tab" onclick="filterProducts('Accessories')">اكسسوارات</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="shop-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"></div>
+
+        <!-- ================= Seller & Reviews Section ================= -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20">
+
+            <!-- Seller Rating -->
+            <div class="space-y-6">
+                <h3 class="text-xl font-bold">تقييم البائع</h3>
+
+                <div class="p-6 bg-zinc-900/40 border border-white/5 rounded-3xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-black font-bold">AX</div>
+                        <div>
+                            <div class="font-bold">AXIONIX Official</div>
+                            <div class="text-xs text-zinc-500">متجر موثق</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="star-rating text-lg text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-sm font-bold">4.8 / 5</span>
+                    </div>
+
+                    <p class="text-xs text-zinc-400">
+                        98% من المشترين يوصون بهذا البائع لسرعة التوصيل وجودة التغليف.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Customer Reviews -->
+            <div class="lg:col-span-2 space-y-8">
+
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold">آراء المشترين</h3>
+                    <button onclick="toggleReviewForm()" class="text-yellow-500 text-sm font-bold hover:underline">
+                        أضف تعليقك
+                    </button>
+                </div>
+
+                <!-- Review Form -->
+                <div id="review-form-container" class="hidden p-6 bg-zinc-900/60 rounded-3xl border border-yellow-500/20">
+                    <h4 class="font-bold mb-4 text-sm">ما هو رأيك في المنتج؟</h4>
+
+                    <div class="space-y-4">
+                        <div class="flex gap-2 text-xl text-zinc-700" id="star-selector">
+                            <i class="fas fa-star cursor-pointer" onclick="setRating(1)"></i>
+                            <i class="fas fa-star cursor-pointer" onclick="setRating(2)"></i>
+                            <i class="fas fa-star cursor-pointer" onclick="setRating(3)"></i>
+                            <i class="fas fa-star cursor-pointer" onclick="setRating(4)"></i>
+                            <i class="fas fa-star cursor-pointer" onclick="setRating(5)"></i>
+                        </div>
+
+                        <input id="rev-name" type="text" placeholder="اسمك" class="luxury-input w-full px-4 py-3 rounded-xl text-sm">
+                        <textarea id="rev-text" rows="3" placeholder="اكتب تجربتك هنا..." class="luxury-input w-full px-4 py-3 rounded-xl text-sm"></textarea>
+
+                        <button onclick="submitReview()" class="px-8 py-3 bg-yellow-500 text-black font-bold rounded-full text-xs">
+                            نشر التعليق
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reviews List -->
+                <div id="reviews-list" class="space-y-6">
+                    <div class="p-6 bg-zinc-900/40 rounded-2xl">
+                        <div class="flex justify-between mb-3">
+                            <div class="font-bold text-sm">خالد الحربي</div>
+                            <div class="text-yellow-500 text-xs">
+                                ★★★★★
+                            </div>
+                        </div>
+                        <p class="text-sm text-zinc-400">
+                            الجودة فاقت توقعاتي، والتغليف ممتاز جداً.
+                        </p>
+                        <div class="mt-2 text-[10px] text-zinc-600">منذ يومين</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- ============================================================ -->
+
+    </div>
+</main>
+
+
+    <!-- Detail Page -->
+    <main id="detail-page" class="page-content hidden-section pt-24 md:pt-32 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-6 pb-20">
+            <button onclick="showPage('shop')" class="mb-8 md:mb-12 text-zinc-500 hover:text-white text-sm">
+                <i class="fas fa-arrow-right ml-2"></i> العودة للمتجر
+            </button>
+            <div id="product-detail-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20"></div>
+            
+            <!-- NEW: Seller Rating & Reviews Section -->
+           
+        </div>
+    </main>
+
+    <!-- Cart Page -->
+    <main id="cart-page" class="page-content hidden-section pt-24 md:pt-32 animate-fade-in">
+        <div class="max-w-5xl mx-auto px-4 md:px-8 pb-20">
+            <h1 class="text-3xl md:text-4xl font-bold mb-10">سلة التسوق</h1>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+                <div id="cart-items" class="lg:col-span-2 space-y-4 md:space-y-6"></div>
+                <div id="cart-sidebar" class="hidden space-y-6">
+                    <div class="p-6 md:p-8 bg-zinc-900/60 rounded-3xl border border-white/10">
+                        <h2 class="text-xl font-bold mb-6 text-yellow-500">تفاصيل الطلب</h2>
+                        <form id="checkout-form" class="space-y-4">
+                            <input type="text" id="cust-name" required placeholder="الاسم الكامل" class="luxury-input w-full px-4 py-3 rounded-xl text-sm">
+                            <input type="tel" id="cust-phone" required placeholder="رقم الجوال" class="luxury-input w-full px-4 py-3 rounded-xl text-sm">
+                            <textarea id="cust-address" required rows="3" placeholder="العنوان بالتفصيل..." class="luxury-input w-full px-4 py-3 rounded-xl text-sm"></textarea>
+                            <div class="pt-6 border-t border-white/5 space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-zinc-400">الإجمالي:</span>
+                                    <span id="total-price" class="text-xl md:text-2xl font-black luxury-gradient"></span>
+                                </div>
+                                <button type="submit" class="w-full py-4 bg-yellow-500 text-black rounded-full font-bold uppercase tracking-widest text-sm">تأكيد الشراء</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chatbot -->
+    <div id="chatbot" class="fixed bottom-6 right-6 z-[150]">
+        <div id="chat-window" class="hidden absolute bottom-16 right-0 w-[90vw] md:w-[350px] bg-zinc-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden animate-fade-in">
+            <div class="bg-yellow-500 p-4 text-black flex justify-between items-center font-bold text-sm">
+                <span>مساعد أكسيونكس</span>
+                <button onclick="toggleChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="chat-messages" class="chat-container p-4 overflow-y-auto flex flex-col space-y-3 text-xs md:text-sm bg-black/40">
+                <div class="bg-zinc-800 text-zinc-300 p-3 rounded-xl rounded-bl-none self-start max-w-[85%]">مرحباً بك في عالم الفخامة. كيف يمكنني مساعدتك؟</div>
+            </div>
+            <div class="p-3 border-t border-white/5 flex gap-2">
+                <input type="text" id="chat-input" placeholder="اسألني أي شيء..." class="flex-1 bg-black rounded-lg px-3 py-2 text-xs outline-none border border-white/10 focus:border-yellow-500">
+                <button onclick="sendMessage()" class="bg-yellow-500 text-black p-2 rounded-lg text-xs"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="w-14 h-14 md:w-16 md:h-16 bg-yellow-500 rounded-full flex items-center justify-center text-black shadow-2xl transition-transform hover:scale-110">
+            <i class="fas fa-comment-dots text-xl md:text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-[300] bg-black/90 hidden items-center justify-center p-6 backdrop-blur-sm">
+        <div class="bg-zinc-900 border border-yellow-500/20 p-8 md:p-12 rounded-3xl max-w-lg w-full text-center space-y-6">
+            <div class="w-16 h-16 bg-yellow-500 text-black rounded-full flex items-center justify-center mx-auto text-2xl"><i class="fas fa-check"></i></div>
+            <h2 class="text-2xl md:text-3xl font-bold">تم استلام طلبك!</h2>
+            <p id="success-message" class="text-zinc-400 text-sm md:text-base font-light"></p>
+            <button onclick="closeSuccessModal()" class="px-8 py-3 bg-white text-black font-bold rounded-full w-full">حسناً</button>
+        </div>
+    </div>
+
+    <script>
+        const PRODUCTS = [
+            // ===== ساعات فاخرة (8 منتجات) =====
+            { id: 1, name: 'ساعة أكسيونكس الملكية بالإصدار الخاص', price: 12500, category: 'Watches', image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800', description: 'ساعة مصنوعة يدوياً من التيتانيوم والياقوت بتصميم عصري وفريد.' },
+            { id: 2, name: 'ساعة رويال أوديمار بيجيه كلاسيكية', price: 8900, category: 'Watches', image:'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?q=80&w=800', description: 'تحفة فنية سويسرية بميناء ذهبي وحركة أوتوماتيكية دقيقة.' },
+            { id: 3, name: 'ساعة باتيك فيليب كالاترافا الفاخرة', price: 15600, category: 'Watches', image:'https://images.unsplash.com/photo-1548171915-e79a380a2a4b?q=80&w=800', description: 'أيقونة الفخامة والرقي بعلبة ذهبية عيار 18 قيراط.' },
+            { id: 4, name: 'ساعة رولكس ديت جوست الإصدار المحدود', price: 22300, category: 'Watches', image:'https://media.mapp.sa/100705/conversions/202210010240_97054-preview.jpeg', description: 'أداء لا يُضاهى بتصميم فريد ومقاومة للماء حتى 300 متر.' },
+            { id: 5, name: 'ساعة أوميغا سيدماستر بروفيشنال', price: 9800, category: 'Watches', image:'https://images.unsplash.com/photo-1698433974913-2728583f2b9c?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: 'ساعة رياضية فاخرة بحركة ميكانيكية متطورة.' },
+            { id: 6, name: 'ساعة تاج هوير كاريرا سبورت', price: 7200, category: 'Watches', image:'https://images.unsplash.com/photo-1622434641406-a158123450f9?q=80&w=704&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: 'تصميم رياضي أنيق مع ميناء كرونوغراف متعدد الوظائف.' },
+            { id: 7, name: 'ساعة هابلوت بيغ بانغ يونيكو', price: 18900, category: 'Watches', image:'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?q=80&w=800', description: 'ابتكار هندسي بعلبة تيتانيوم وسوار مطاط فاخر.' },
+            { id: 8, name: 'ساعة شوبارد إمبيريال كولكشن', price: 13400, category: 'Watches', image:'https://images.unsplash.com/photo-1696778382401-b9f26e43df36?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: 'فخامة ملكية بألماس طبيعي وميناء مرصع بالجواهر.' },
+
+            // ===== عطور نادرة (7 منتجات) =====
+            { id: 9, name: 'عطر ليالي الشرق بتركيبة العود النادرة', price: 850, category: 'Fragrance', image:'https://cdn.salla.sa/wWORaV/K3mCCq8W4rG28Lpdg3vwlPrHbbmgf2Hj9dowqwNS.jpg', description: 'مزيج ساحر من العود الملكي والمسك الأبيض يدوم طويلاً.' },
+            { id: 10, name: 'عطر كريستال رويال من السيفورا', price: 1200, category: 'Fragrance', image:'https://cdn.salla.sa/ZjBwP/ILGXGy7qkxDxRRxTm2LiUSGng8l8OrdpTapnyAa8.png', description: 'تركيبة فرنسية نادرة بتفاصيل زهرية وخشبية دافئة.' },
+            { id: 11, name: 'عطر توم فورد بلک أوركيد بارفيوم', price: 950, category: 'Fragrance', image:'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800', description: 'سحر الليل وجاذبية لا تقاوم بخلاصة السوسن السوداء.' },
+            { id: 12, name: 'عطر كريد أفينتوس كلاسيكي', price: 1450, category: 'Fragrance', image:'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800', description: 'رجولة وقوة بتركيبة منعشة من الأناناس والتوابل النادرة.' },
+            { id: 13, name: 'عسر جيفنشي جنتلمان إديس', price: 780, category: 'Fragrance', image:'https://media.zid.store/bfaa3454-0e90-4f91-91c7-be4cb1752ac8/9153bb3d-865c-48d0-9bf8-164dbb7fdf67.jpg', description: 'أناقة فرنسية خالدة بروائح خشبية وحمضيات متوازنة.' },
+            { id: 14, name: 'عطر ديور سافاج إليكسير', price: 1100, category: 'Fragrance', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRanjisycazIl7StpQcVt4It9L_5NwY2bkXJw&s', description: 'تركيز عالي يدوم 24 ساعة بخلاصة العنبر والفانيليا.' },
+            { id: 15, name: 'عطر كارتييه بانثر ديكلريشن', price: 1350, category: 'Fragrance', image:'https://mnstator.com/image/cache/catalog/%D9%83%D8%A7%D8%B1%D8%AA%D9%8A%D8%B1/cartier-la-panthere-noir-absolu-eau-de-parfum-for-women_-800x800.jpg', description: 'أنوثة وجاذبية بزهور البرغموت والياسمين الملكي.' },
+
+            // ===== جلديات إيطالية (6 منتجات) =====
+            { id: 16, name: 'محفظة الجلد الإيطالي الفاخرة', price: 450, category: 'Leather Goods', image:'https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=800', description: 'جلد طبيعي 100% معالج يدوياً بمواصفات عالمية.' },
+            { id: 17, name: 'حقيبة يد جلد تمساح أصلي', price: 3200, category: 'Leather Goods', image:'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800', description: 'حقيبة يد نسائية فاخرة بجلد تمساح طبيعي معتمد.' },
+            { id: 18, name: 'حزام جلد فيرزاتشي إيطالي', price: 680, category: 'Leather Goods', image:'https://assets.levelshoes.com/cdn-cgi/image/width=1500,height=2100,quality=95,format=webp/media/catalog/product/1/0/1004009-1a11597-1b00v_1.jpg?ts=20240703031015', description: 'إكسسوار رجالي فاخر بإبزيم ذهبي وخياطة يدوية دقيقة.' },
+            { id: 19, name: 'محفظة كارتير بانثر الجلدية', price: 1200, category: 'Leather Goods', image:'https://media.zid.store/56de92c8-32be-487a-833b-86709b8ad541/1d5ca781-5625-454f-85a5-52375c0eb6d9.jpg', description: 'محفظة نسائية بجلد العجل ومشبك ذهبي مرصع.' },
+            { id: 20, name: 'شنطة ظهر جلد برادا نايلون', price: 2100, category: 'Leather Goods', image:'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=800', description: 'جمعت بين الجلد الإيطالي والنايلون عالي الجودة.' },
+            { id: 21, name: 'محفظة رجالية جلد غزال لامع', price: 890, category: 'Leather Goods', image:'https://dipelle.net/wp-content/uploads/2024/03/%D9%85%D8%AD%D9%81%D8%B8%D9%87-%D8%B1%D8%AC%D8%A7%D9%84%D9%8A%D8%8C-%D9%85%D8%AD%D9%81%D8%B8%D8%A9-%D8%AC%D9%84%D8%AF-%D8%B7%D8%A8%D9%8A%D8%B9%D9%8A.jpg', description: 'تصميم نحيف وعملي بجيوب متعددة للبطاقات.' },
+
+            // ===== اكسسوارات حصرية (6 منتجات) =====
+            { id: 22, name: 'نظارات شمسية بريميوم كلاسيكية', price: 1200, category: 'Accessories', image:'https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=800', description: 'عدسات مستقطبة تحمي عينيك بأناقة تامة في كل الأوقات.' },
+            { id: 23, name: 'ربطة عنق حريرية فندي المحدودة', price: 450, category: 'Accessories', image: 'https://m.media-amazon.com/images/I/51yFFvm-L8L._AC_SY350_.jpg', description: 'حرير إيطالي طبيعي بنسبة 100% بتصميم هندسي فريد.' },
+            { id: 24, name: 'أحذية جلدية برادا رسمية', price: 2800, category: 'Accessories', image:'https://cdn4.arabiccoupon.com/sites/default/files/images/04-Oct-2020_LatestNews-6-Formal-Men-shoes-arrived-the-GCC-market-ARnEN-3--Steve-Madden-Decklan-lace-ups.jpg', description: 'حرفية إيطالية عالية بجلد العجل ونعل مطاطي مريح.' },
+            { id: 25, name: 'قلم مونت بلانك أس بروكسي', price: 1650, category: 'Accessories', image:'https://m.media-amazon.com/images/I/51ZXGSgg5lL._AC_SL1000_.jpg', description: 'قلم حبر فاخر بغطاء ذهبي ونقش يدوي فريد.' },
+            { id: 26, name: 'منديل جيب حرير بربري', price: 280, category: 'Accessories', image:'https://cdn.theluxurycloset.com/uploads/optimize/products/750x750/luxury-women-burberry-new-accessories-p80354-001.jpg', description: 'قطعة حرير إنجليزي بنمط المربعات التقليدي.' },
+            { id: 27, name: 'أزرار كم ذهبية تيفاني', price: 2100, category: 'Accessories', image:'https://images-eu.ssl-images-amazon.com/images/I/31stno2J5nL._AC_UL600_SR600,600_.jpg', description: 'أزرار كم فاخرة بذهب عيار 18 ونقشة تيفاني المميزة.' }
+        ];
+
+        let cart = [];
+        let currentRating = 0;
+
+        window.toggleMobileMenu = function() {
+            document.getElementById('mobile-menu').classList.toggle('menu-open');
+        };
+
+        window.showPage = function(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden-section'));
+            const target = document.getElementById(pageId + '-page');
+            if(target) target.classList.remove('hidden-section');
+            window.scrollTo(0, 0);
+            
+            if (pageId === 'home') renderFeatured();
+            if (pageId === 'shop') renderShop(PRODUCTS);
+            if (pageId === 'cart') renderCart();
+        };
+
+        function renderFeatured() {
+            const container = document.getElementById('featured-products');
+            if(container) container.innerHTML = PRODUCTS.slice(0, 3).map(p => generateProductHTML(p)).join('');
+        }
+
+        function renderShop(list) {
+            const container = document.getElementById('shop-grid');
+            if(container) container.innerHTML = list.map(p => generateProductHTML(p)).join('');
+        }
+
+        window.filterProducts = function(category) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            renderShop(category === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === category));
+        };
+
+        function generateProductHTML(p) {
+            return `
+                <div class="product-card group relative flex flex-col h-full animate-fade-in" data-category="${p.category}">
+                    <div class="aspect-square overflow-hidden cursor-pointer p-2" onclick="viewProduct(${p.id})">
+                        <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-700">
+                    </div>
+                    <div class="px-4 pb-4 pt-2 flex flex-col flex-grow space-y-3">
+                        <div class="flex-grow">
+                            <span class="text-[9px] uppercase tracking-widest text-zinc-500 block mb-1">${p.category}</span>
+                            <h3 class="product-title font-bold text-sm mb-1 leading-tight">${p.name}</h3>
+                            <div class="product-price text-yellow-500 font-bold text-base">${p.price.toLocaleString()} <span class="text-[10px]">ر.س</span></div>
+                        </div>
+                        <button onclick="addToCart(${p.id})" class="w-full py-2.5 bg-gradient-to-r from-zinc-700 to-zinc-800 text-white text-xs font-bold rounded-xl transition-all hover:from-yellow-500 hover:to-yellow-600 hover:text-black">
+                            إضافة للسلة
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.addToCart = function(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) { existing.qty++; } else { cart.push({ ...product, qty: 1 }); }
+            updateCartUI();
+            showToast(`تمت إضافة "${product.name}"`);
+        };
+
+        function updateCartUI() {
+            const count = cart.reduce((acc, item) => acc + item.qty, 0);
+            const badge = document.getElementById('cart-count');
+            badge.innerText = count;
+            badge.classList.toggle('hidden', count === 0);
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            const sidebar = document.getElementById('cart-sidebar');
+            if (!container) return;
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="text-center py-20 text-zinc-600">سلتك خالية من الفخامة حالياً.</div>';
+                sidebar.classList.add('hidden');
+                return;
+            }
+            
+            sidebar.classList.remove('hidden');
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                return `
+                    <div class="flex gap-4 md:gap-6 p-4 md:p-6 bg-zinc-900/40 rounded-2xl border border-white/5 items-center">
+                        <img src="${item.image}" class="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover">
+                        <div class="flex-1">
+                            <div class="font-bold text-xs md:text-sm mb-1">${item.name}</div>
+                            <div class="text-yellow-500 text-[10px] md:text-xs">${item.price.toLocaleString()} ر.س</div>
+                        </div>
+                        <div class="flex items-center bg-black rounded-full px-2 py-1 border border-white/10 text-[10px]">
+                            <button onclick="changeQty(${item.id}, -1)" class="w-5 h-5">-</button>
+                            <span class="px-3">${item.qty}</span>
+                            <button onclick="changeQty(${item.id}, 1)" class="w-5 h-5">+</button>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-zinc-600 hover:text-red-500 transition-colors px-2"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('total-price').innerText = `${total.toLocaleString()} ر.س`;
+        }
+
+        window.changeQty = function(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty = Math.max(1, item.qty + delta);
+                renderCart();
+                updateCartUI();
+            }
+        };
+
+        window.removeFromCart = function(id) {
+            cart = cart.filter(i => i.id !== id);
+            renderCart();
+            updateCartUI();
+        };
+
+        document.getElementById('checkout-form').onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('cust-name').value;
+            const total = document.getElementById('total-price').innerText;
+            document.getElementById('success-message').innerText = `سيد ${name}، شكراً لثقتك بـ AXIONIX. تم تجهيز طلبك بقيمة ${total}.`;
+            document.getElementById('success-modal').style.display = 'flex';
+            cart = [];
+            updateCartUI();
+        };
+
+        window.closeSuccessModal = function() {
+            document.getElementById('success-modal').style.display = 'none';
+            showPage('home');
+        };
+
+        window.viewProduct = function(id) {
+            const p = PRODUCTS.find(item => item.id === id);
+            const container = document.getElementById('product-detail-content');
+            showPage('detail');
+            container.innerHTML = `
+                <div class="aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-900 border border-white/5">
+                    <img src="${p.image}" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-6 md:space-y-10">
+                    <div class="space-y-3">
+                        <span class="text-yellow-500 text-[10px] font-black tracking-widest uppercase">${p.category}</span>
+                        <h1 class="text-3xl md:text-5xl font-bold leading-tight">${p.name}</h1>
+                    </div>
+                    <div class="text-3xl font-light text-yellow-500">${p.price.toLocaleString()} ر.س</div>
+                    <p class="text-sm md:text-lg text-zinc-400 leading-relaxed font-light">${p.description}</p>
+                    <button onclick="addToCart(${p.id})" class="w-full py-5 bg-white text-black font-black uppercase tracking-widest rounded-full hover:bg-yellow-500 transition-all text-sm">إضافة إلى السلة</button>
+                    
+                    <div class="flex items-center gap-6 pt-6 border-t border-white/5">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-shipping-fast text-yellow-500"></i>
+                            <span class="text-[10px] text-zinc-500">توصيل سريع</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-shield-alt text-yellow-500"></i>
+                            <span class="text-[10px] text-zinc-500">ضمان أكسيونكس</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        };
+
+        /* NEW REVIEW FUNCTIONS */
+        window.toggleReviewForm = function() {
+            document.getElementById('review-form-container').classList.toggle('hidden');
+        };
+
+        window.setRating = function(n) {
+            currentRating = n;
+            const stars = document.getElementById('star-selector').children;
+            for(let i=0; i<5; i++) {
+                if(i < n) stars[i].classList.add('text-yellow-500');
+                else stars[i].classList.remove('text-yellow-500');
+            }
+        };
+
+        window.submitReview = function() {
+            const name = document.getElementById('rev-name').value;
+            const text = document.getElementById('rev-text').value;
+            if(!name || !text || currentRating === 0) {
+                showToast("يرجى إكمال جميع بيانات التقييم");
+                return;
+            }
+
+            const list = document.getElementById('reviews-list');
+            const newReview = document.createElement('div');
+            newReview.className = "review-item p-6 rounded-2xl animate-fade-in";
+            
+            let starsHtml = "";
+            for(let i=0; i<5; i++) {
+                starsHtml += `<i class="fas fa-star ${i < currentRating ? 'text-yellow-500' : 'text-zinc-800'}"></i>`;
+            }
+
+            newReview.innerHTML = `
+                <div class="flex justify-between items-start mb-3">
+                    <div class="font-bold text-sm">${name}</div>
+                    <div class="star-rating text-[10px]">${starsHtml}</div>
+                </div>
+                <p class="text-sm text-zinc-400 font-light leading-relaxed">${text}</p>
+                <div class="mt-3 text-[10px] text-zinc-600">الآن</div>
+            `;
+
+            list.prepend(newReview);
+            document.getElementById('rev-name').value = "";
+            document.getElementById('rev-text').value = "";
+            setRating(0);
+            toggleReviewForm();
+            showToast("شكراً لمشاركتنا رأيك");
+        };
+
+        window.toggleSearch = function() { 
+            document.getElementById('search-overlay').classList.toggle('hidden'); 
+            if(!document.getElementById('search-overlay').classList.contains('hidden')) {
+                document.getElementById('search-input').focus();
+            }
+        };
+        
+        window.handleSearch = function(query) {
+            const container = document.getElementById('search-results');
+            if(!query) { container.innerHTML = ''; return; }
+            const results = PRODUCTS.filter(p => p.name.includes(query) || p.category.includes(query));
+            container.innerHTML = results.map(p => `
+                <div onclick="viewProduct(${p.id}); toggleSearch();" class="flex items-center gap-4 bg-zinc-900/50 p-4 rounded-xl cursor-pointer hover:bg-yellow-500 hover:text-black">
+                    <img src="${p.image}" class="w-12 h-12 rounded-lg object-cover">
+                    <div class="text-sm"><div class="font-bold">${p.name}</div><div class="opacity-60">${p.price.toLocaleString()} ر.س</div></div>
+                </div>
+            `).join('');
+        };
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.opacity = '1';
+            toast.style.pointerEvents = 'auto';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.pointerEvents = 'none';
+            }, 3000);
+        }
+
+        window.toggleChat = function() { document.getElementById('chat-window').classList.toggle('hidden'); };
+        
+        window.sendMessage = async function() {
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-messages');
+            if (!input.value) return;
+            const userMsg = input.value;
+            container.innerHTML += `<div class="bg-yellow-500 text-black p-3 rounded-xl rounded-br-none self-end max-w-[85%] animate-fade-in">${userMsg}</div>`;
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+            
+            setTimeout(() => {
+                container.innerHTML += `<div class="bg-zinc-800 text-zinc-300 p-3 rounded-xl rounded-bl-none self-start max-w-[85%] animate-fade-in">نحن هنا لخدمتكم بأفضل المنتجات. هل ترغب برؤية الساعات الفاخرة؟</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 800);
+        };
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 40) {
+                nav.classList.add('glass-nav');
+                nav.classList.remove('py-4', 'md:py-6');
+                nav.classList.add('py-3');
+            } else {
+                nav.classList.remove('glass-nav');
+                nav.classList.remove('py-3');
+                nav.classList.add('py-4', 'md:py-6');
+            }
+        });
+
+        window.onload = () => renderFeatured();
+    </script>
+</body>
+</html>
