@@ -40,6 +40,15 @@
             border: 1px solid rgba(0, 0, 0, 0.15);
         }
         
+        /* هذا التنسيق يحدد لون النصوص تحت المنتجات */
+        .product-description-text {
+            color: #fff; /* أبيض في الوضع الليلي */
+        }
+        
+        .light-mode .product-description-text {
+            color: #000 !important; /* أسود في الوضع النهاري */
+        }
+        
         .light-mode .tab {
             background: #e5e5e5;
             color: #666;
@@ -64,12 +73,23 @@
             letter-spacing: 0.5px;
         }
         
-        /* Hide elements based on mode/language */
+        /* عرض النصوص بناءً على اللغة فقط */
         .en-text { display: none; }
-        body.light-mode .ar-text { display: none; }
-        body.light-mode .en-text { display: block; }
-        body[dir="ltr"] { text-align: left; }
-        body[dir="ltr"] .space-x-reverse { direction: ltr; }
+        body[lang="en"] .en-text { display: block; }
+        body[lang="en"] .ar-text { display: none; }
+        
+        body[dir="ltr"] {
+            text-align: left;
+        }
+        body[dir="ltr"] .space-x-reverse {
+            direction: ltr;
+        }
+        
+        /* Fix for LTR layout */
+        body[dir="ltr"] .london-mode {
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
         
         .luxury-gradient {
             background: linear-gradient(135deg, #eab308 0%, #fef08a 100%);
@@ -124,6 +144,11 @@
             left: auto !important;
             transform: translateX(100%);
         }
+        body[dir="ltr"] #mobile-menu {
+            right: auto !important;
+            left: 0 !important;
+            transform: translateX(-100%);
+        }
         .menu-open { transform: translateX(0) !important; }
         .star-rating {
             color: #eab308;
@@ -131,6 +156,10 @@
         .review-item {
             background: rgba(255, 255, 255, 0.02);
             border-right: 3px solid #eab308;
+        }
+        body[dir="ltr"] .review-item {
+            border-right: none;
+            border-left: 3px solid #eab308;
         }
         .product-card {
             padding: 12px;
@@ -154,9 +183,6 @@
         .product-title {
             font-size: 14px;
             color: #f0f0f0;
-        }
-        .product-price {
-            font-size: 13px;
         }
         .product-card button {
             padding: 8px 12px;
@@ -202,6 +228,11 @@
         .toggle-btn {
             transition: all 0.3s ease;
         }
+        
+        /* Fix for icon spacing in LTR */
+        body[dir="ltr"] .gap-2 {
+            gap: 0.5rem;
+        }
     </style>
 </head>
 <body class="selection:bg-yellow-500 selection:text-black">
@@ -209,15 +240,15 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-[100] transition-all duration-300 py-4 md:py-6">
         <div class="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between relative">
-            <div class="hidden md:flex items-center space-x-6 space-x-reverse">
-                <button onclick="showPage('home')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors ar-text">الرئيسية</button>
-                <button onclick="showPage('home')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors en-text">Home</button>
-                <button onclick="showPage('shop')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors ar-text">المتجر</button>
-                <button onclick="showPage('shop')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors en-text">Shop</button>
-                <button onclick="showPage('story')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors ar-text">قصتنا</button>
-                <button onclick="showPage('story')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors en-text">Our Story</button>
+            <div class="hidden md:flex items-center gap-6">
+                <button onclick="showPage('home')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors ar-text product-description-text">الرئيسية</button>
+                <button onclick="showPage('home')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors en-text product-description-text">Home</button>
+                <button onclick="showPage('shop')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors ar-text product-description-text">المتجر</button>
+                <button onclick="showPage('shop')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors en-text product-description-text">Shop</button>
+                <button onclick="showPage('story')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors ar-text product-description-text">قصتنا</button>
+                <button onclick="showPage('story')" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors en-text product-description-text">Our Story</button>
                 <a href="https://wa.me/736257722" target="_blank" class="nav-link text-sm font-medium text-zinc-400 hover:text-white transition-colors">
-                    <i class="fab fa-whatsapp ml-1"></i> <span class="ar-text">تواصل معنا</span><span class="en-text">Contact Us</span>
+                    <i class="fab fa-whatsapp ml-1"></i> <span class="ar-text product-description-text">تواصل معنا</span><span class="en-text product-description-text">Contact Us</span>
                 </a>
             </div>
 
@@ -226,14 +257,14 @@
             </button>
 
             <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-                <h1 onclick="showPage('home')" class="text-2xl md:text-3xl font-black cursor-pointer tracking-tighter">
+                <h1 onclick="showPage('home')" class="text-2xl md:text-3xl font-black cursor-pointer tracking-tighter product-description-text">
                     <span class="ar-text">اكسيونكس</span>
                     <span class="en-text">Axyonx</span>
                     <span class="text-yellow-500">.</span>
                 </h1>
             </div>
             
-            <div class="flex items-center space-x-2 space-x-reverse">
+            <div class="flex items-center gap-2">
                 <button onclick="toggleSearch()" class="toggle-btn text-zinc-400 hover:text-white"><i class="fas fa-search"></i></button>
                 
                 <!-- Theme Toggle Button -->
@@ -243,8 +274,8 @@
                 
                 <!-- Language Toggle Button -->
                 <button onclick="toggleLanguage()" class="toggle-btn text-zinc-400 hover:text-white" id="lang-toggle" title="تبديل اللغة">
-                    <span class="ar-text">EN</span>
-                    <span class="en-text">AR</span>
+                    <span class="ar-text product-description-text">EN</span>
+                    <span class="en-text product-description-text">AR</span>
                 </button>
                 
                 <button onclick="showPage('cart')" class="toggle-btn relative text-zinc-400 hover:text-white">
@@ -256,24 +287,24 @@
     </nav>
 
     <!-- Mobile Side Menu -->
-    <div id="mobile-menu" class="fixed inset-y-0 right-0 z-[150] bg-black translate-x-full md:hidden flex flex-col items-center justify-start space-y-8 text-2xl font-bold w-4/5 max-w-sm">
+    <div id="mobile-menu" class="fixed inset-y-0 bg-black translate-x-full md:hidden flex flex-col items-center justify-start space-y-8 text-2xl font-bold w-4/5 max-w-sm" style="right: 0;">
         <button onclick="toggleMobileMenu()" class="absolute top-6 left-6 text-zinc-500 text-3xl">&times;</button>
         
         <div class="mt-24 flex flex-col space-y-8 text-xl">
-            <button onclick="showPage('home'); toggleMobileMenu();" class="hover:text-yellow-500 ar-text">الرئيسية</button>
-            <button onclick="showPage('home'); toggleMobileMenu();" class="hover:text-yellow-500 en-text london-mode">Home</button>
-            <button onclick="showPage('shop'); toggleMobileMenu();" class="hover:text-yellow-500 ar-text">المتجر</button>
-            <button onclick="showPage('shop'); toggleMobileMenu();" class="hover:text-yellow-500 en-text london-mode">Shop</button>
-            <button onclick="showPage('story'); toggleMobileMenu();" class="hover:text-yellow-500 ar-text">قصتنا</button>
-            <button onclick="showPage('story'); toggleMobileMenu();" class="hover:text-yellow-500 en-text london-mode">Our Story</button>
+            <button onclick="showPage('home'); toggleMobileMenu();" class="hover:text-yellow-500 ar-text product-description-text">الرئيسية</button>
+            <button onclick="showPage('home'); toggleMobileMenu();" class="hover:text-yellow-500 en-text london-mode product-description-text">Home</button>
+            <button onclick="showPage('shop'); toggleMobileMenu();" class="hover:text-yellow-500 ar-text product-description-text">المتجر</button>
+            <button onclick="showPage('shop'); toggleMobileMenu();" class="hover:text-yellow-500 en-text london-mode product-description-text">Shop</button>
+            <button onclick="showPage('story'); toggleMobileMenu();" class="hover:text-yellow-500 ar-text product-description-text">قصتنا</button>
+            <button onclick="showPage('story'); toggleMobileMenu();" class="hover:text-yellow-500 en-text london-mode product-description-text">Our Story</button>
             <a href="https://wa.me/736257722" target="_blank" class="whatsapp-btn px-6 py-3 rounded-full text-sm font-bold">
-                <i class="fab fa-whatsapp ml-2"></i> <span class="ar-text">تواصل معنا</span><span class="en-text">Contact Us</span>
+                <i class="fab fa-whatsapp ml-2"></i> <span class="ar-text product-description-text">تواصل معنا</span><span class="en-text product-description-text">Contact Us</span>
             </a>
         </div>
     </div>
 
     <!-- Notification Toast -->
-    <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-[200] bg-yellow-500 text-black px-6 py-3 rounded-full font-bold shadow-2xl transition-all opacity-0 pointer-events-none text-sm whitespace-nowrap">
+    <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-[200] bg-yellow-500 text-black px-6 py-3 rounded-full font-bold shadow-2xl transition-all opacity-0 pointer-events-none text-sm whitespace-nowrap product-description-text">
         <span class="ar-text">تم الإضافة للسلة بنجاح</span>
         <span class="en-text">Added to cart successfully</span>
     </div>
@@ -296,24 +327,24 @@
                 <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
             </div>
             <div class="relative z-10 text-center px-6 max-w-4xl mx-auto space-y-6 md:space-y-8">
-                <h1 class="text-4xl md:text-8xl font-black tracking-tighter leading-tight ar-text">
+                <h1 class="text-4xl md:text-8xl font-black tracking-tighter leading-tight ar-text product-description-text">
                     هذا ليس متجراً.<br/>
                     <span class="luxury-gradient text-3xl md:text-7xl">هذه تجربة فاخرة.</span>
                 </h1>
-                <h1 class="text-4xl md:text-8xl font-black tracking-tighter leading-tight en-text london-mode">
+                <h1 class="text-4xl md:text-8xl font-black tracking-tighter leading-tight en-text london-mode product-description-text">
                     This is not a store.<br/>
                     <span class="luxury-gradient text-3xl md:text-7xl">This is a luxury experience.</span>
                 </h1>
-                <p class="text-sm md:text-xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed ar-text">
+                <p class="text-sm md:text-xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed ar-text product-description-text">
                     اكتشف مجموعة مختارة بعناية من أرقى المنتجات العالمية المصممة خصيصاً لمن يقدرون التميز.
                 </p>
-                <p class="text-sm md:text-xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed en-text">
+                <p class="text-sm md:text-xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed en-text product-description-text">
                     Discover a carefully curated collection of the world's finest products designed exclusively for those who appreciate excellence.
                 </p>
                 <div class="pt-4">
                     <button onclick="showPage('shop')" class="px-8 md:px-12 py-4 md:py-5 bg-yellow-500 text-black font-bold uppercase tracking-widest rounded-full hover:scale-105 transition-all text-sm md:text-base">
-                        <span class="ar-text">استعرض المتجر</span>
-                        <span class="en-text london-mode">Browse Shop</span>
+                        <span class="ar-text product-description-text">استعرض المتجر</span>
+                        <span class="en-text london-mode product-description-text">Browse Shop</span>
                         <i class="fas fa-arrow-left mr-2"></i>
                     </button>
                 </div>
@@ -322,8 +353,8 @@
 
         <section class="max-w-7xl mx-auto px-6 py-16 md:py-24">
             <div class="mb-12">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 ar-text">المختارات الراقية</h2>
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 en-text">Premium Selection</h2>
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 ar-text product-description-text">المختارات الراقية</h2>
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 en-text product-description-text">Premium Selection</h2>
                 <div class="w-16 h-1 bg-yellow-500"></div>
             </div>
             <div id="featured-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10"></div>
@@ -334,12 +365,12 @@
     <main id="story-page" class="page-content hidden-section pt-24 md:pt-32 animate-fade-in">
         <div class="max-w-5xl mx-auto px-6 pb-20">
             <div class="text-center space-y-6 mb-16 md:mb-24">
-                <h1 class="text-4xl md:text-7xl font-black ar-text">حكايتنا <span class="text-yellow-500">.</span></h1>
-                <h1 class="text-4xl md:text-7xl font-black en-text">Our Story <span class="text-yellow-500">.</span></h1>
-                <p class="text-zinc-400 text-sm md:text-xl leading-relaxed max-w-3xl mx-auto font-light ar-text">
+                <h1 class="text-4xl md:text-7xl font-black ar-text product-description-text">حكايتنا <span class="text-yellow-500">.</span></h1>
+                <h1 class="text-4xl md:text-7xl font-black en-text product-description-text">Our Story <span class="text-yellow-500">.</span></h1>
+                <p class="text-zinc-400 text-sm md:text-xl leading-relaxed max-w-3xl mx-auto font-light ar-text product-description-text">
                     بدأت رحلتنا من مقاعد الدراسة، كفريق طموح يهدف لدمج الابتكار التقني بجمالية التصميم العصري.
                 </p>
-                <p class="text-zinc-400 text-sm md:text-xl leading-relaxed max-w-3xl mx-auto font-light en-text">
+                <p class="text-zinc-400 text-sm md:text-xl leading-relaxed max-w-3xl mx-auto font-light en-text product-description-text">
                     Our journey began in classrooms, as an ambitious team aiming to merge technical innovation with modern design aesthetics.
                 </p>
             </div>
@@ -348,12 +379,12 @@
                     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000" class="w-full h-full object-cover grayscale opacity-70">
                 </div>
                 <div class="space-y-6">
-                    <h2 class="text-2xl md:text-3xl font-bold ar-text">رؤية أكسيونكس</h2>
-                    <h2 class="text-2xl md:text-3xl font-bold en-text">Vision of Axyonx</h2>
-                    <p class="text-zinc-400 leading-relaxed font-light text-base md:text-lg ar-text">
+                    <h2 class="text-2xl md:text-3xl font-bold ar-text product-description-text">رؤية أكسيونكس</h2>
+                    <h2 class="text-2xl md:text-3xl font-bold en-text product-description-text">Vision of Axyonx</h2>
+                    <p class="text-zinc-400 leading-relaxed font-light text-base md:text-lg ar-text product-description-text">
                         نحن في فريق "أكسيونكس التقني" نؤمن بأن الفخامة لا تتعلق فقط بالسعر، بل بالدقة والاهتمام بأدق التفاصيل. كل منتج في متجرنا هو قصة تميز نرويها لكم.
                     </p>
-                    <p class="text-zinc-400 leading-relaxed font-light text-base md:text-lg en-text">
+                    <p class="text-zinc-400 leading-relaxed font-light text-base md:text-lg en-text product-description-text">
                         At Axyonx Tech, we believe luxury isn't just about price—it's about precision and attention to the finest details. Every product in our store is a story of excellence we tell you.
                     </p>
                     <div class="h-1 w-20 bg-yellow-500"></div>
@@ -362,27 +393,27 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 <div class="p-6 border border-white/5 rounded-2xl text-center bg-zinc-900/20">
                     <div class="w-16 h-16 bg-zinc-800 rounded-xl mx-auto mb-4 flex items-center justify-center text-yellow-500"><i class="fas fa-code"></i></div>
-                    <h3 class="font-bold">حمزة المقبلي</h3>
-                    <p class="text-zinc-500 text-xs mt-1 ar-text">تطوير وابتكار</p>
-                    <p class="text-zinc-500 text-xs mt-1 en-text london-mode">Development & Innovation</p>
+                    <h3 class="font-bold product-description-text">حمزة المقبلي</h3>
+                    <p class="text-zinc-500 text-xs mt-1 ar-text product-description-text">تطوير وابتكار</p>
+                    <p class="text-zinc-500 text-xs mt-1 en-text product-description-text london-mode">Development & Innovation</p>
                 </div>
                 <div class="p-6 border border-white/5 rounded-2xl text-center bg-zinc-900/20">
                     <div class="w-16 h-16 bg-zinc-800 rounded-xl mx-auto mb-4 flex items-center justify-center text-yellow-500"><i class="fas fa-terminal"></i></div>
-                    <h3 class="font-bold">مهند البحيري</h3>
-                    <p class="text-zinc-500 text-xs mt-1 ar-text">برمجيات ذكية</p>
-                    <p class="text-zinc-500 text-xs mt-1 en-text london-mode">Intelligent Software</p>
+                    <h3 class="font-bold product-description-text">مهند البحيري</h3>
+                    <p class="text-zinc-500 text-xs mt-1 ar-text product-description-text">برمجيات ذكية</p>
+                    <p class="text-zinc-500 text-xs mt-1 en-text product-description-text london-mode">Intelligent Software</p>
                 </div>
                 <div class="p-6 border border-white/5 rounded-2xl text-center bg-zinc-900/20">
                     <div class="w-16 h-16 bg-zinc-800 rounded-xl mx-auto mb-4 flex items-center justify-center text-yellow-500"><i class="fas fa-microchip"></i></div>
-                    <h3 class="font-bold">محمد هيوه</h3>
-                    <p class="text-zinc-500 text-xs mt-1 ar-text">حلول تقنية</p>
-                    <p class="text-zinc-500 text-xs mt-1 en-text london-mode">Technical Solutions</p>
+                    <h3 class="font-bold product-description-text">محمد هيوه</h3>
+                    <p class="text-zinc-500 text-xs mt-1 ar-text product-description-text">حلول تقنية</p>
+                    <p class="text-zinc-500 text-xs mt-1 en-text product-description-text london-mode">Technical Solutions</p>
                 </div>
                 <div class="p-6 border border-white/5 rounded-2xl text-center bg-zinc-900/20">
                     <div class="w-16 h-16 bg-zinc-800 rounded-xl mx-auto mb-4 flex items-center justify-center text-yellow-500"><i class="fas fa-laptop-code"></i></div>
-                    <h3 class="font-bold">محمد المقبلي</h3>
-                    <p class="text-zinc-500 text-xs mt-1 ar-text">تجربة المستخدم</p>
-                    <p class="text-zinc-500 text-xs mt-1 en-text london-mode">User Experience</p>
+                    <h3 class="font-bold product-description-text">محمد المقبلي</h3>
+                    <p class="text-zinc-500 text-xs mt-1 ar-text product-description-text">تجربة المستخدم</p>
+                    <p class="text-zinc-500 text-xs mt-1 en-text product-description-text london-mode">User Experience</p>
                 </div>
             </div>
         </div>
@@ -395,32 +426,32 @@
         <!-- Header -->
         <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-                <h1 class="text-3xl md:text-5xl font-bold ar-text">المتجر الكامل</h1>
-                <h1 class="text-3xl md:text-5xl font-bold en-text london-mode">Complete Shop</h1>
-                <p class="text-zinc-500 mt-2 text-sm ar-text">استكشف عالم أكسيونكس الحصري.</p>
-                <p class="text-zinc-500 mt-2 text-sm en-text">Explore the exclusive world of Axyonx.</p>
+                <h1 class="text-3xl md:text-5xl font-bold ar-text product-description-text">المتجر الكامل</h1>
+                <h1 class="text-3xl md:text-5xl font-bold en-text london-mode product-description-text">Complete Shop</h1>
+                <p class="text-zinc-500 mt-2 text-sm ar-text product-description-text">استكشف عالم أكسيونكس الحصري.</p>
+                <p class="text-zinc-500 mt-2 text-sm en-text product-description-text">Explore the exclusive world of Axyonx.</p>
             </div>
         </div>
 
         <!-- Tabs -->
         <div class="tabs">
-            <button class="tab active" onclick="filterProducts('all')">
+            <button class="tab active product-description-text" onclick="filterProducts('all')">
                 <span class="ar-text">الكل</span>
                 <span class="en-text">All</span>
             </button>
-            <button class="tab" onclick="filterProducts('Watches')">
+            <button class="tab product-description-text" onclick="filterProducts('Watches')">
                 <span class="ar-text">ساعات</span>
                 <span class="en-text">Watches</span>
             </button>
-            <button class="tab" onclick="filterProducts('Fragrance')">
+            <button class="tab product-description-text" onclick="filterProducts('Fragrance')">
                 <span class="ar-text">عطور</span>
                 <span class="en-text">Fragrance</span>
             </button>
-            <button class="tab" onclick="filterProducts('Leather Goods')">
+            <button class="tab product-description-text" onclick="filterProducts('Leather Goods')">
                 <span class="ar-text">جلديات</span>
                 <span class="en-text">Leather</span>
             </button>
-            <button class="tab" onclick="filterProducts('Accessories')">
+            <button class="tab product-description-text" onclick="filterProducts('Accessories')">
                 <span class="ar-text">اكسسوارات</span>
                 <span class="en-text">Accessories</span>
             </button>
@@ -434,16 +465,16 @@
 
             <!-- Seller Rating -->
             <div class="space-y-6">
-                <h3 class="text-xl font-bold ar-text">تقييم البائع</h3>
-                <h3 class="text-xl font-bold en-text">Seller Rating</h3>
+                <h3 class="text-xl font-bold ar-text product-description-text">تقييم البائع</h3>
+                <h3 class="text-xl font-bold en-text product-description-text">Seller Rating</h3>
 
                 <div class="p-6 bg-zinc-900/40 border border-white/5 rounded-3xl">
                     <div class="flex items-center gap-4 mb-4">
                         <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-black font-bold">AX</div>
                         <div>
-                            <div class="font-bold">اكسيونكس Official</div>
-                            <div class="text-xs text-zinc-500 ar-text">متجر موثق</div>
-                            <div class="text-xs text-zinc-500 en-text">Verified Store</div>
+                            <div class="font-bold product-description-text">اكسيونكس Official</div>
+                            <div class="text-xs text-zinc-500 ar-text product-description-text">متجر موثق</div>
+                            <div class="text-xs text-zinc-500 en-text product-description-text">Verified Store</div>
                         </div>
                     </div>
 
@@ -455,13 +486,13 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <span class="text-sm font-bold">4.8 / 5</span>
+                        <span class="text-sm font-bold product-description-text">4.8 / 5</span>
                     </div>
 
-                    <p class="text-xs text-zinc-400 ar-text">
+                    <p class="text-xs text-zinc-400 ar-text product-description-text">
                         98% من المشترين يوصون بهذا البائع لسرعة التوصيل وجودة التغليف.
                     </p>
-                    <p class="text-xs text-zinc-400 en-text">
+                    <p class="text-xs text-zinc-400 en-text product-description-text">
                         98% of buyers recommend this seller for fast delivery and quality packaging.
                     </p>
                 </div>
@@ -471,9 +502,9 @@
             <div class="lg:col-span-2 space-y-8">
 
                 <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-bold ar-text">آراء المشترين</h3>
-                    <h3 class="text-xl font-bold en-text">Customer Reviews</h3>
-                    <button onclick="toggleReviewForm()" class="text-yellow-500 text-sm font-bold hover:underline">
+                    <h3 class="text-xl font-bold ar-text product-description-text">آراء المشترين</h3>
+                    <h3 class="text-xl font-bold en-text product-description-text">Customer Reviews</h3>
+                    <button onclick="toggleReviewForm()" class="text-yellow-500 text-sm font-bold hover:underline product-description-text">
                         <span class="ar-text">أضف تعليقك</span>
                         <span class="en-text">Add Review</span>
                     </button>
@@ -481,8 +512,8 @@
 
                 <!-- Review Form -->
                 <div id="review-form-container" class="hidden p-6 bg-zinc-900/60 rounded-3xl border border-yellow-500/20">
-                    <h4 class="font-bold mb-4 text-sm ar-text">ما هو رأيك في المنتج؟</h4>
-                    <h4 class="font-bold mb-4 text-sm en-text">What do you think of the product?</h4>
+                    <h4 class="font-bold mb-4 text-sm ar-text product-description-text">ما هو رأيك في المنتج؟</h4>
+                    <h4 class="font-bold mb-4 text-sm en-text product-description-text">What do you think of the product?</h4>
 
                     <div class="space-y-4">
                         <div class="flex gap-2 text-xl text-zinc-700" id="star-selector">
@@ -510,20 +541,20 @@
                 <div id="reviews-list" class="space-y-6">
                     <div class="p-6 bg-zinc-900/40 rounded-2xl">
                         <div class="flex justify-between mb-3">
-                            <div class="font-bold text-sm ar-text">حمزة المقبلي</div>
-                            <div class="font-bold text-sm en-text">Khalid Al-Harbi</div>
+                            <div class="font-bold text-sm ar-text product-description-text">خالد الحربي</div>
+                            <div class="font-bold text-sm en-text product-description-text">Khalid Al-Harbi</div>
                             <div class="text-yellow-500 text-xs">
                                 ★★★★★
                             </div>
                         </div>
-                        <p class="text-sm text-zinc-400 ar-text">
+                        <p class="text-sm text-zinc-400 ar-text product-description-text">
                             الجودة فاقت توقعاتي، والتغليف ممتاز جداً.
                         </p>
-                        <p class="text-sm text-zinc-400 en-text">
+                        <p class="text-sm text-zinc-400 en-text product-description-text">
                             Quality exceeded my expectations, packaging is excellent.
                         </p>
-                        <div class="mt-2 text-[10px] text-zinc-600 ar-text">منذ يومين</div>
-                        <div class="mt-2 text-[10px] text-zinc-600 en-text">2 days ago</div>
+                        <div class="mt-2 text-[10px] text-zinc-600 ar-text product-description-text">منذ يومين</div>
+                        <div class="mt-2 text-[10px] text-zinc-600 en-text product-description-text">2 days ago</div>
                     </div>
                 </div>
 
@@ -537,26 +568,26 @@
     <!-- Detail Page -->
     <main id="detail-page" class="page-content hidden-section pt-24 md:pt-32 animate-fade-in">
         <div class="max-w-7xl mx-auto px-6 pb-20">
-            <button onclick="showPage('shop')" class="mb-8 md:mb-12 text-zinc-500 hover:text-white text-sm">
+            <button onclick="showPage('shop')" class="mb-8 md:mb-12 text-zinc-500 hover:text-white text-sm product-description-text">
                 <i class="fas fa-arrow-right ml-2"></i> 
                 <span class="ar-text">العودة للمتجر</span>
                 <span class="en-text">Back to Shop</span>
             </button>
-            <div id="product-detail-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20"></div>
+            <div id="product-detail-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20" data-product-id=""></div>
         </div>
     </main>
 
     <!-- Cart Page -->
     <main id="cart-page" class="page-content hidden-section pt-24 md:pt-32 animate-fade-in">
         <div class="max-w-5xl mx-auto px-4 md:px-8 pb-20">
-            <h1 class="text-3xl md:text-4xl font-bold mb-10 ar-text">سلة التسوق</h1>
-            <h1 class="text-3xl md:text-4xl font-bold mb-10 en-text london-mode">Shopping Cart</h1>
+            <h1 class="text-3xl md:text-4xl font-bold mb-10 ar-text product-description-text">سلة التسوق</h1>
+            <h1 class="text-3xl md:text-4xl font-bold mb-10 en-text london-mode product-description-text">Shopping Cart</h1>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                 <div id="cart-items" class="lg:col-span-2 space-y-4 md:space-y-6"></div>
                 <div id="cart-sidebar" class="hidden space-y-6">
                     <div class="p-6 md:p-8 bg-zinc-900/60 rounded-3xl border border-white/10">
-                        <h2 class="text-xl font-bold mb-6 text-yellow-500 ar-text">تفاصيل الطلب</h2>
-                        <h2 class="text-xl font-bold mb-6 text-yellow-500 en-text">Order Details</h2>
+                        <h2 class="text-xl font-bold mb-6 text-yellow-500 ar-text product-description-text">تفاصيل الطلب</h2>
+                        <h2 class="text-xl font-bold mb-6 text-yellow-500 en-text product-description-text">Order Details</h2>
                         <form id="checkout-form" class="space-y-4">
                             <input type="text" id="cust-name" required placeholder="الاسم الكامل" class="ar-text luxury-input w-full px-4 py-3 rounded-xl text-sm">
                             <input type="text" id="cust-name-en" required placeholder="Full Name" class="en-text luxury-input w-full px-4 py-3 rounded-xl text-sm">
@@ -566,13 +597,13 @@
                             <textarea id="cust-address-en" required rows="3" placeholder="Address in detail..." class="en-text luxury-input w-full px-4 py-3 rounded-xl text-sm"></textarea>
                             <div class="pt-6 border-t border-white/5 space-y-4">
                                 <div class="flex justify-between items-center">
-                                    <span class="text-zinc-400 ar-text">الإجمالي:</span>
-                                    <span class="text-zinc-400 en-text">Total:</span>
+                                    <span class="text-zinc-400 ar-text product-description-text">الإجمالي:</span>
+                                    <span class="text-zinc-400 en-text product-description-text">Total:</span>
                                     <span id="total-price" class="text-xl md:text-2xl font-black luxury-gradient"></span>
                                 </div>
                                 <button type="submit" class="w-full py-4 bg-yellow-500 text-black rounded-full font-bold uppercase tracking-widest text-sm">
                                     <span class="ar-text">تأكيد الشراء</span>
-                                    <span class="en-text london-mode">Confirm Purchase</span>
+                                    <span class="en-text">Confirm Purchase</span>
                                 </button>
                             </div>
                         </form>
@@ -586,8 +617,8 @@
     <div id="chatbot" class="fixed bottom-6 right-6 z-[150]">
         <div id="chat-window" class="hidden absolute bottom-16 right-0 w-[90vw] md:w-[350px] bg-zinc-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden animate-fade-in">
             <div class="bg-yellow-500 p-4 text-black flex justify-between items-center font-bold text-sm">
-                <span class="ar-text">مساعد أكسيونكس</span>
-                <span class="en-text">Axyonx Assistant</span>
+                <span class="ar-text product-description-text">مساعد أكسيونكس</span>
+                <span class="en-text product-description-text">Axyonx Assistant</span>
                 <button onclick="toggleChat()"><i class="fas fa-times"></i></button>
             </div>
             <div id="chat-messages" class="chat-container p-4 overflow-y-auto flex flex-col space-y-3 text-xs md:text-sm bg-black/40">
@@ -609,9 +640,9 @@
     <div id="success-modal" class="fixed inset-0 z-[300] bg-black/90 hidden items-center justify-center p-6 backdrop-blur-sm">
         <div class="bg-zinc-900 border border-yellow-500/20 p-8 md:p-12 rounded-3xl max-w-lg w-full text-center space-y-6">
             <div class="w-16 h-16 bg-yellow-500 text-black rounded-full flex items-center justify-center mx-auto text-2xl"><i class="fas fa-check"></i></div>
-            <h2 class="text-2xl md:text-3xl font-bold ar-text">تم استلام طلبك!</h2>
-            <h2 class="text-2xl md:text-3xl font-bold en-text">Order Received!</h2>
-            <p id="success-message" class="text-zinc-400 text-sm md:text-base font-light"></p>
+            <h2 class="text-2xl md:text-3xl font-bold ar-text product-description-text">تم استلام طلبك!</h2>
+            <h2 class="text-2xl md:text-3xl font-bold en-text product-description-text">Order Received!</h2>
+            <p id="success-message" class="text-zinc-400 text-sm md:text-base font-light product-description-text"></p>
             <button onclick="closeSuccessModal()" class="px-8 py-3 bg-white text-black font-bold rounded-full w-full">
                 <span class="ar-text">حسناً</span>
                 <span class="en-text">Okay</span>
@@ -640,17 +671,17 @@
             
             { id: 16, name: { ar: 'محفظة الجلد الإيطالي الفاخرة', en: 'Italian Leather Luxury Wallet' }, price: 450, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=800', description: { ar: 'جلد طبيعي 100% معالج يدوياً بمواصفات عالمية.', en: '100% natural leather, hand-processed to global standards.' } },
             { id: 17, name: { ar: 'حقيبة يد جلد تمساح أصلي', en: 'Genuine Crocodile Leather Handbag' }, price: 3200, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800', description: { ar: 'حقيبة يد نسائية فاخرة بجلد تمساح طبيعي معتمد.', en: 'Luxury women handbag with certified genuine crocodile leather.' } },
-            { id: 18, name: { ar: 'حزام جلد فيرزاتشي إيطالي', en: 'Versace Italian Leather Belt' }, price: 680, category: { ar: 'جلديات', en: 'Leather Goods' }, image:'https://assets.levelshoes.com/cdn-cgi/image/width=1500,height=2100,quality=95,format=webp/media/catalog/product/1/0/1004009-1a11597-1b00v_1.jpg?ts=20240703031015', description: { ar: 'إكسسوار رجالي فاخر بإبزيم ذهبي وخياطة يدوية دقيقة.', en: 'Luxury men accessory with golden buckle and fine hand stitching.' } },
+            { id: 18, name: { ar: 'حزام جلد فيرزاتشي إيطالي', en: 'Versace Italian Leather Belt' }, price: 680, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://images.unsplash.com/photo-1601924992340-5d92b5daf0e6?q=80&w=800', description: { ar: 'إكسسوار رجالي فاخر بإبزيم ذهبي وخياطة يدوية دقيقة.', en: 'Luxury men accessory with golden buckle and fine hand stitching.' } },
             { id: 19, name: { ar: 'محفظة كارتير بانثر الجلدية', en: 'Cartier Panthère Leather Wallet' }, price: 1200, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://media.zid.store/56de92c8-32be-487a-833b-86709b8ad541/1d5ca781-5625-454f-85a5-52375c0eb6d9.jpg', description: { ar: 'محفظة نسائية بجلد العجل ومشبك ذهبي مرصع.', en: 'Ladies wallet with calfskin leather and studded golden clasp.' } },
             { id: 20, name: { ar: 'شنطة ظهر جلد برادا نايلون', en: 'Prada Nylon Leather Backpack' }, price: 2100, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=800', description: { ar: 'جمعت بين الجلد الإيطالي والنايلون عالي الجودة.', en: 'Combines Italian leather with high-quality nylon.' } },
             { id: 21, name: { ar: 'محفظة رجالية جلد غزال لامع', en: 'Shiny Goatskin Men Wallet' }, price: 890, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://dipelle.net/wp-content/uploads/2024/03/%D9%85%D8%AD%D9%81%D8%B8%D9%87-%D8%B1%D8%AC%D8%A7%D9%84%D9%8A%D8%8C-%D9%85%D8%AD%D9%81%D8%B8%D8%A9-%D8%AC%D9%84%D8%AF-%D8%B7%D8%A8%D9%8A%D8%B9%D9%8A.jpg', description: { ar: 'تصميم نحيف وعملي بجيوب متعددة للبطاقات.', en: 'Sleek, practical design with multiple card pockets.' } },
             
             { id: 22, name: { ar: 'نظارات شمسية بريميوم كلاسيكية', en: 'Premium Classic Sunglasses' }, price: 1200, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=800', description: { ar: 'عدسات مستقطبة تحمي عينيك بأناقة تامة في كل الأوقات.', en: 'Polarized lenses protect your eyes with complete elegance.' } },
-            { id: 23, name: { ar: 'ربطة عنق حريرية فندي المحدودة', en: 'Limited Edition Fendi Silk Tie' }, price: 450, category: { ar: 'اكسسوارات', en: 'Accessories' }, image:'https://m.media-amazon.com/images/I/51yFFvm-L8L._AC_SY350_.jpg', description: { ar: 'حرير إيطالي طبيعي بنسبة 100% بتصميم هندسي فريد.', en: '100% natural Italian silk with unique geometric design.' } },
-            { id: 24, name: { ar: 'أحذية جلدية برادا رسمية', en: 'Prada Formal Leather Shoes' }, price: 2800, category: { ar: 'اكسسوارات', en: 'Accessories' }, image:'https://cdn4.arabiccoupon.com/sites/default/files/images/04-Oct-2020_LatestNews-6-Formal-Men-shoes-arrived-the-GCC-market-ARnEN-3--Steve-Madden-Decklan-lace-ups.jpg', description: { ar: 'حرفية إيطالية عالية بجلد العجل ونعل مطاطي مريح.', en: 'High Italian craftsmanship with calfskin leather and comfortable rubber sole.' } },
+            { id: 23, name: { ar: 'ربطة عنق حريرية فندي المحدودة', en: 'Limited Edition Fendi Silk Tie' }, price: 450, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://images.unsplash.com/photo-1601924992340-5d92b5daf0e6?q=80&w=800', description: { ar: 'حرير إيطالي طبيعي بنسبة 100% بتصميم هندسي فريد.', en: '100% natural Italian silk with unique geometric design.' } },
+            { id: 24, name: { ar: 'أحذية جلدية برادا رسمية', en: 'Prada Formal Leather Shoes' }, price: 2800, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://images.unsplash.com/photo-1601924992340-5d92b5daf0e6?q=80&w=800', description: { ar: 'حرفية إيطالية عالية بجلد العجل ونعل مطاطي مريح.', en: 'High Italian craftsmanship with calfskin leather and comfortable rubber sole.' } },
             { id: 25, name: { ar: 'قلم مونت بلانك أس بروكسي', en: 'Montblanc Etoile Pen' }, price: 1650, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://m.media-amazon.com/images/I/51ZXGSgg5lL._AC_SL1000_.jpg', description: { ar: 'قلم حبر فاخر بغطاء ذهبي ونقش يدوي فريد.', en: 'Luxury fountain pen with golden cap and unique hand engraving.' } },
             { id: 26, name: { ar: 'منديل جيب حرير بربري', en: 'Burberry Pocket Silk Handkerchief' }, price: 280, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://cdn.theluxurycloset.com/uploads/optimize/products/750x750/luxury-women-burberry-new-accessories-p80354-001.jpg', description: { ar: 'قطعة حرير إنجليزي بنمط المربعات التقليدي.', en: 'English silk piece with traditional check pattern.' } },
-            { id: 27, name: { ar: 'أزرار كم ذهبية تيفاني', en: 'Tiffany Golden Cufflinks' }, price: 2100, category: { ar: 'اكسسوارات', en: 'Accessories' }, image:'https://images-eu.ssl-images-amazon.com/images/I/31stno2J5nL._AC_UL600_SR600,600_.jpg', description: { ar: 'أزرار كم فاخرة بذهب عيار 18 ونقشة تيفاني المميزة.', en: 'Luxury cufflinks with 18k gold and signature Tiffany engraving.' } }
+            { id: 27, name: { ar: 'أزرار كم ذهبية تيفاني', en: 'Tiffany Golden Cufflinks' }, price: 2100, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://images.unsplash.com/photo-1601924992340-5d92b5daf0e6?q=80&w=800', description: { ar: 'أزرار كم فاخرة بذهب عيار 18 ونقشة تيفاني المميزة.', en: 'Luxury cufflinks with 18k gold and signature Tiffany engraving.' } }
         ];
 
         let cart = [];
@@ -698,9 +729,9 @@
                     </div>
                     <div class="px-4 pb-4 pt-2 flex flex-col flex-grow space-y-3">
                         <div class="flex-grow">
-                            <span class="text-[9px] uppercase tracking-widest text-zinc-500 block mb-1">${isEnglish ? p.category.en : p.category.ar}</span>
-                            <h3 class="product-title font-bold text-sm mb-1 leading-tight">${isEnglish ? p.name.en : p.name.ar}</h3>
-                            <div class="product-price text-yellow-500 font-bold text-base">${p.price.toLocaleString()} <span class="text-[10px]">ر.س</span></div>
+                            <span class="text-[9px] uppercase tracking-widest text-zinc-500 block mb-1 product-description-text">${isEnglish ? p.category.en : p.category.ar}</span>
+                            <h3 class="product-title font-bold text-sm mb-1 leading-tight product-description-text">${isEnglish ? p.name.en : p.name.ar}</h3>
+                            <div class="product-price text-yellow-500 font-bold text-base product-description-text">${p.price.toLocaleString()} <span class="text-[10px]">ر.ي</span></div>
                         </div>
                         <button onclick="addToCart(${p.id})" class="w-full py-2.5 bg-gradient-to-r from-zinc-700 to-zinc-800 text-white text-xs font-bold rounded-xl transition-all hover:from-yellow-500 hover:to-yellow-600 hover:text-black">
                             ${isEnglish ? 'Add to Cart' : 'إضافة للسلة'}
@@ -731,7 +762,7 @@
             if (!container) return;
             
             if (cart.length === 0) {
-                container.innerHTML = `<div class="text-center py-20 text-zinc-600">${isEnglish ? 'Your cart is currently empty of luxury.' : 'سلتك خالية من الفخامة حالياً.'}</div>`;
+                container.innerHTML = `<div class="text-center py-20 text-zinc-600 product-description-text">${isEnglish ? 'Your cart is currently empty of luxury.' : 'سلتك خالية من الفخامة حالياً.'}</div>`;
                 sidebar.classList.add('hidden');
                 return;
             }
@@ -744,8 +775,8 @@
                     <div class="flex gap-4 md:gap-6 p-4 md:p-6 bg-zinc-900/40 rounded-2xl border border-white/5 items-center">
                         <img src="${item.image}" class="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover">
                         <div class="flex-1">
-                            <div class="font-bold text-xs md:text-sm mb-1">${isEnglish ? item.name.en : item.name.ar}</div>
-                            <div class="text-yellow-500 text-[10px] md:text-xs">${item.price.toLocaleString()} ر.س</div>
+                            <div class="font-bold text-xs md:text-sm mb-1 product-description-text">${isEnglish ? item.name.en : item.name.ar}</div>
+                            <div class="text-yellow-500 text-[10px] md:text-xs">${item.price.toLocaleString()} ر.ي</div>
                         </div>
                         <div class="flex items-center bg-black rounded-full px-2 py-1 border border-white/10 text-[10px]">
                             <button onclick="changeQty(${item.id}, -1)" class="w-5 h-5">-</button>
@@ -756,7 +787,7 @@
                     </div>
                 `;
             }).join('');
-            document.getElementById('total-price').innerText = `${total.toLocaleString()} ر.س`;
+            document.getElementById('total-price').innerText = `${total.toLocaleString()} ر.ي`;
         }
 
         window.changeQty = function(id, delta) {
@@ -793,29 +824,30 @@
             const p = PRODUCTS.find(item => item.id === id);
             const container = document.getElementById('product-detail-content');
             showPage('detail');
+            container.setAttribute('data-product-id', id);
             container.innerHTML = `
                 <div class="aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-900 border border-white/5">
                     <img src="${p.image}" class="w-full h-full object-cover">
                 </div>
                 <div class="space-y-6 md:space-y-10">
                     <div class="space-y-3">
-                        <span class="text-yellow-500 text-[10px] font-black tracking-widest uppercase">${isEnglish ? p.category.en : p.category.ar}</span>
-                        <h1 class="text-3xl md:text-5xl font-bold leading-tight">${isEnglish ? p.name.en : p.name.ar}</h1>
+                        <span class="text-yellow-500 text-[10px] font-black tracking-widest uppercase product-description-text">${isEnglish ? p.category.en : p.category.ar}</span>
+                        <h1 class="text-3xl md:text-5xl font-bold leading-tight product-description-text">${isEnglish ? p.name.en : p.name.ar}</h1>
                     </div>
-                    <div class="text-3xl font-light text-yellow-500">${p.price.toLocaleString()} ر.س</div>
-                    <p class="text-sm md:text-lg text-zinc-400 leading-relaxed font-light">${isEnglish ? p.description.en : p.description.ar}</p>
-                    <button onclick="addToCart(${p.id})" class="w-full py-5 bg-white text-black font-black uppercase tracking-widest rounded-full hover:bg-yellow-500 transition-all text-sm">${isEnglish ? 'Add to Cart' : 'إضافة إلى السلة'}</button>
+                    <div class="text-3xl font-light text-yellow-500">${p.price.toLocaleString()} ر.ي</div>
+                    <p class="text-sm md:text-lg leading-relaxed font-light product-description-text">${isEnglish ? p.description.en : p.description.ar}</p>
+                    <button onclick="addToCart(${p.id})" class="w-full py-5 bg-white text-black font-black uppercase tracking-widest rounded-full hover:bg-yellow-500 transition-all text-sm product-description-text">${isEnglish ? 'Add to Cart' : 'إضافة إلى السلة'}</button>
                     
                     <div class="flex items-center gap-6 pt-6 border-t border-white/5">
                         <div class="flex items-center gap-2">
                             <i class="fas fa-shipping-fast text-yellow-500"></i>
-                            <span class="text-[10px] text-zinc-500 ar-text">توصيل سريع</span>
-                            <span class="text-[10px] text-zinc-500 en-text">Fast Delivery</span>
+                            <span class="text-[10px] text-zinc-500 ar-text product-description-text">توصيل سريع</span>
+                            <span class="text-[10px] text-zinc-500 en-text product-description-text">Fast Delivery</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <i class="fas fa-shield-alt text-yellow-500"></i>
-                            <span class="text-[10px] text-zinc-500 ar-text">ضمان أكسيونكس</span>
-                            <span class="text-[10px] text-zinc-500 en-text">Axyonx Warranty</span>
+                            <span class="text-[10px] text-zinc-500 ar-text product-description-text">ضمان أكسيونكس</span>
+                            <span class="text-[10px] text-zinc-500 en-text product-description-text">Axyonx Warranty</span>
                         </div>
                     </div>
                 </div>
@@ -854,11 +886,11 @@
 
             newReview.innerHTML = `
                 <div class="flex justify-between items-start mb-3">
-                    <div class="font-bold text-sm">${name}</div>
+                    <div class="font-bold text-sm product-description-text">${name}</div>
                     <div class="star-rating text-[10px]">${starsHtml}</div>
                 </div>
-                <p class="text-sm text-zinc-400 font-light leading-relaxed">${text}</p>
-                <div class="mt-3 text-[10px] text-zinc-600">${isEnglish ? 'Now' : 'الآن'}</div>
+                <p class="text-sm text-zinc-400 font-light leading-relaxed product-description-text">${text}</p>
+                <div class="mt-3 text-[10px] text-zinc-600 product-description-text">${isEnglish ? 'Now' : 'الآن'}</div>
             `;
 
             list.prepend(newReview);
@@ -891,7 +923,7 @@
             container.innerHTML = results.map(p => `
                 <div onclick="viewProduct(${p.id}); toggleSearch();" class="flex items-center gap-4 bg-zinc-900/50 p-4 rounded-xl cursor-pointer hover:bg-yellow-500 hover:text-black">
                     <img src="${p.image}" class="w-12 h-12 rounded-lg object-cover">
-                    <div class="text-sm"><div class="font-bold">${isEnglish ? p.name.en : p.name.ar}</div><div class="opacity-60">${p.price.toLocaleString()} ر.س</div></div>
+                    <div class="text-sm"><div class="font-bold product-description-text">${isEnglish ? p.name.en : p.name.ar}</div><div class="opacity-60">${p.price.toLocaleString()} ر.ي</div></div>
                 </div>
             `).join('');
         };
@@ -958,6 +990,11 @@
             if(currentPage === 'home-page') renderFeatured();
             else if(currentPage === 'shop-page') renderShop(PRODUCTS);
             else if(currentPage === 'cart-page') renderCart();
+            else if(currentPage === 'detail-page') {
+                // Re-render product detail if user is on detail page
+                const productId = document.getElementById('product-detail-content').getAttribute('data-product-id');
+                if(productId) viewProduct(parseInt(productId));
+            }
             
             localStorage.setItem('lang', isEnglish ? 'en' : 'ar');
         };
