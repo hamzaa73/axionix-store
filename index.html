@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -233,6 +232,217 @@
         body[dir="ltr"] .gap-2 {
             gap: 0.5rem;
         }
+
+        /* إصلاح القائمة الجانبية للوضع النهاري */
+        .light-mode #mobile-menu {
+            background: white !important;
+            border-left: 1px solid #eee !important;
+        }
+
+        .light-mode #mobile-menu .product-description-text,
+        .light-mode #mobile-menu button,
+        .light-mode #mobile-menu a {
+            color: black !important;
+        }
+
+        .light-mode #mobile-menu button:hover,
+        .light-mode #mobile-menu a:hover {
+            color: #eab308 !important;
+        }
+
+        .light-mode #mobile-menu button.text-zinc-500 {
+            color: #666 !important;
+        }
+
+        .light-mode #mobile-menu .whatsapp-btn {
+            color: white !important;
+        }
+
+        /* --- إضافة تنسيقات للصور في الوضعين --- */
+        /* إخفاء صورة الوضع النهاري افتراضياً */
+        #light-bg {
+            display: none;
+        }
+        
+        /* عند تفعيل الوضع النهاري */
+        body.light-mode #light-bg {
+            display: block !important;
+        }
+        
+        body.light-mode #dark-bg {
+            display: none !important;
+        }
+        
+        /* تحسين النصوص في الصفحة الرئيسية للوضع النهاري */
+        body.light-mode #home-page .product-description-text {
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+        }
+        
+        body.light-mode #home-page .luxury-gradient {
+            background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* تحسين التدرج فوق الصورة في الوضع النهاري */
+        body.light-mode #home-page .absolute.inset-0.z-0 .absolute.inset-0 {
+            background: linear-gradient(to bottom, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0) 50%, 
+                rgba(255, 255, 255, 0.3) 100%) !important;
+        }
+/* تنسيق زر الإغلاق في القائمة الجانبية */
+#mobile-menu button.ar-text {
+    left: 1.5rem !important;
+    right: auto !important;
+    display: block;
+}
+
+#mobile-menu button.en-text {
+    left: auto !important;
+    right: 1.5rem !important;
+    display: none;
+}
+
+/* ضبط العرض عند تغيير اللغة */
+body[lang="en"] #mobile-menu button.ar-text {
+    display: none !important;
+}
+
+body[lang="en"] #mobile-menu button.en-text {
+    display: block !important;
+}
+
+body[lang="ar"] #mobile-menu button.ar-text {
+    display: block !important;
+}
+
+body[lang="ar"] #mobile-menu button.en-text {
+    display: none !important;
+}
+  
+/* تنسيقات مربع تحديد الكمية */
+.quantity-selector {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.light-mode .quantity-selector {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: black !important;
+}
+
+.light-mode .quantity-selector button {
+    color: black !important;
+}
+
+.light-mode .quantity-selector span {
+    color: black !important;
+}
+
+/* تنسيقات أزرار + و - */
+.quantity-selector button {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.light-mode .quantity-selector button {
+    color: black;
+}
+
+.quantity-selector button:hover {
+    background: rgba(234, 179, 8, 0.3);
+    border-radius: 50%;
+}
+
+.light-mode .quantity-selector button:hover {
+    background: rgba(234, 179, 8, 0.5);
+}
+
+/* تنسيقات بطاقات السلة - أنيقة وفاخرة */
+.cart-item-card {
+    background: linear-gradient(145deg, rgba(20, 20, 20, 0.8), rgba(40, 40, 40, 0.6));
+    border: 1px solid rgba(234, 179, 8, 0.25);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.cart-item-card:hover {
+    border-color: rgba(234, 179, 8, 0.5);
+    box-shadow: 0 15px 50px rgba(234, 179, 8, 0.2);
+    transform: translateY(-3px);
+}
+
+.cart-summary-card {
+    background: linear-gradient(145deg, rgba(25, 25, 25, 0.9), rgba(35, 35, 35, 0.7));
+    border: 1px solid rgba(234, 179, 8, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* تنسيقات الوضع النهاري */
+.light-mode .cart-item-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 245, 245, 0.9));
+    border: 1px solid rgba(234, 179, 8, 0.4);
+    box-shadow: 0 10px 40px rgba(234, 179, 8, 0.15);
+}
+
+.light-mode .cart-item-card:hover {
+    border-color: rgba(234, 179, 8, 0.6);
+    box-shadow: 0 15px 50px rgba(234, 179, 8, 0.25);
+}
+
+.light-mode .cart-summary-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
+    border: 1px solid rgba(234, 179, 8, 0.5);
+    box-shadow: 0 12px 45px rgba(234, 179, 8, 0.2);
+}
+
+/* تحسين النصوص في البطاقات */
+.light-mode .cart-item-card .product-description-text,
+.light-mode .cart-summary-card .product-description-text {
+    color: #1a1a1a !important;
+}
+
+.light-mode .cart-item-card .text-yellow-500,
+.light-mode .cart-summary-card .text-yellow-500 {
+    color: #b45309 !important;
+    font-weight: bold;
+}
+
+/* تحسين زر الحذف في الوضع النهاري */
+.light-mode .cart-item-card button.text-zinc-600 {
+    color: #666 !important;
+}
+
+.light-mode .cart-item-card button.text-zinc-600:hover {
+    color: #dc2626 !important;
+}
+
+/* تحسين حدود البطاقات للنصوص في الوضع النهاري */
+.light-mode .cart-summary-card .border-white\/5 {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light-mode .cart-summary-card .text-zinc-400 {
+    color: #666 !important;
+}
+
+.light-mode .cart-summary-card .luxury-gradient {
+    background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+        
     </style>
 </head>
 <body class="selection:bg-yellow-500 selection:text-black">
@@ -286,9 +496,10 @@
         </div>
     </nav>
 
-  <!-- Mobile Side Menu -->  
- <div id="mobile-menu" class="fixed inset-y-0 bg-black translate-x-full md:hidden flex flex-col items-center justify-start space-y-8 text-2xl font-bold w-4/5 max-w-sm z-[200]" style="right: 0;">
-        <button onclick="toggleMobileMenu()" class="absolute top-6 left-6 text-zinc-500 text-3xl">&times;</button>
+    <!-- Mobile Side Menu -->  
+    <div id="mobile-menu" class="fixed inset-y-0 bg-black translate-x-full md:hidden flex flex-col items-center justify-start space-y-8 text-2xl font-bold w-4/5 max-w-sm z-[200]" style="right: 0;">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 left-6 text-zinc-500 text-3xl ar-text">&times;</button>
+<button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-zinc-500 text-3xl en-text">&times;</button>
         
         <div class="mt-24 flex flex-col space-y-8 text-xl">
             <button onclick="showPage('home'); toggleMobileMenu();" class="hover:text-yellow-500 ar-text product-description-text">الرئيسية</button>
@@ -323,7 +534,12 @@
     <main id="home-page" class="page-content animate-fade-in">
         <section class="relative h-[100svh] flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2000" class="w-full h-full object-cover opacity-30 grayscale">
+                <!-- صورة الوضع الليلي (الداكنة) -->
+                <img id="dark-bg" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2000" class="w-full h-full object-cover opacity-30 grayscale">
+                
+                <!-- صورة الوضع النهاري (الفاتحة) -->
+                <img id="light-bg" src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=2000" class="w-full h-full object-cover opacity-20">
+                
                 <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
             </div>
             <div class="relative z-10 text-center px-6 max-w-4xl mx-auto space-y-6 md:space-y-8">
@@ -564,7 +780,6 @@
     </div>
 </main>
 
-
     <!-- Detail Page -->
     <main id="detail-page" class="page-content hidden-section pt-24 md:pt-32 animate-fade-in">
         <div class="max-w-7xl mx-auto px-6 pb-20">
@@ -585,7 +800,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                 <div id="cart-items" class="lg:col-span-2 space-y-4 md:space-y-6"></div>
                 <div id="cart-sidebar" class="hidden space-y-6">
-                    <div class="p-6 md:p-8 bg-zinc-900/60 rounded-3xl border border-white/10">
+                    <div class="p-6 md:p-8 cart-summary-card rounded-3xl">
                         <h2 class="text-xl font-bold mb-6 text-yellow-500 ar-text product-description-text">تفاصيل الطلب</h2>
                         <h2 class="text-xl font-bold mb-6 text-yellow-500 en-text product-description-text">Order Details</h2>
                         <form id="checkout-form" class="space-y-4">
@@ -649,392 +864,457 @@
             </button>
         </div>
     </div>
-
-    <script>
-        const PRODUCTS = [
-            { id: 1, name: { ar: 'ساعة أكسيونكس الملكية بالإصدار الخاص', en: 'Axyonx Royal Special Edition Watch' }, price: 12500, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800', description: { ar: 'ساعة مصنوعة يدوياً من التيتانيوم والياقوت بتصميم عصري وفريد.', en: 'Handcrafted titanium and sapphire watch with modern, unique design.' } },
-            { id: 2, name: { ar: 'ساعة رويال أوديمار بيجيه كلاسيكية', en: 'Royal Oak Perpetual Classic Watch' }, price: 8900, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?q=80&w=800', description: { ar: 'تحفة فنية سويسرية بميناء ذهبي وحركة أوتوماتيكية دقيقة.', en: 'Swiss artistry with golden dial and precise automatic movement.' } },
-            { id: 3, name: { ar: 'ساعة باتيك فيليب كالاترافا الفاخرة', en: 'Patek Philippe Calatrava Luxury Watch' }, price: 15600, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1548171915-e79a380a2a4b?q=80&w=800', description: { ar: 'أيقونة الفخامة والرقي بعلبة ذهبية عيار 18 قيراط.', en: 'Icon of luxury and elegance with 18k gold case.' } },
-            { id: 4, name: { ar: 'ساعة رولكس ديت جوست الإصدار المحدود', en: 'Rolex Day-Date Limited Edition' }, price: 22300, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://media.mapp.sa/100705/conversions/202210010240_97054-preview.jpeg', description: { ar: 'أداء لا يُضاهى بتصميم فريد ومقاومة للماء حتى 300 متر.', en: 'Unmatched performance with unique design, water resistant to 300m.' } },
-            { id: 5, name: { ar: 'ساعة أوميغا سيدماستر بروفيشنال', en: 'Omega Seamaster Professional' }, price: 9800, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1698433974913-2728583f2b9c?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: { ar: 'ساعة رياضية فاخرة بحركة ميكانيكية متطورة.', en: 'Luxury sports watch with advanced mechanical movement.' } },
-            { id: 6, name: { ar: 'ساعة تاج هوير كاريرا سبورت', en: 'TAG Heuer Carrera Sport' }, price: 7200, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1622434641406-a158123450f9?q=80&w=704&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: { ar: 'تصميم رياضي أنيق مع ميناء كرونوغراف متعدد الوظائف.', en: 'Sleek sports design with multifunction chronograph dial.' } },
-            { id: 7, name: { ar: 'ساعة هابلوت بيغ بانغ يونيكو', en: 'Hublot Big Bang Unico' }, price: 18900, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?q=80&w=800', description: { ar: 'ابتكار هندسي بعلبة تيتانيوم وسوار مطاط فاخر.', en: 'Engineering innovation with titanium case and luxury rubber strap.' } },
-            { id: 8, name: { ar: 'ساعة شوبارد إمبيريال كولكشن', en: 'Chopard Imperial Collection' }, price: 13400, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1696778382401-b9f26e43df36?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: { ar: 'فخامة ملكية بألماس طبيعي وميناء مرصع بالجواهر.', en: 'Regal luxury with natural diamonds and jewel-studded dial.' } },
-            
-            { id: 9, name: { ar: 'عطر ليالي الشرق بتركيبة العود النادرة', en: 'Orient Nights Oud Rare Fragrance' }, price: 850, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://cdn.salla.sa/wWORaV/K3mCCq8W4rG28Lpdg3vwlPrHbbmgf2Hj9dowqwNS.jpg', description: { ar: 'مزيج ساحر من العود الملكي والمسك الأبيض يدوم طويلاً.', en: 'Enchanting blend of royal oud and white musk, long-lasting.' } },
-            { id: 10, name: { ar: 'عطر كريستال رويال من السيفورا', en: 'Crystal Royal Sephora' }, price: 1200, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://cdn.salla.sa/ZjBwP/ILGXGy7qkxDxRRxTm2LiUSGng8l8OrdpTapnyAa8.png', description: { ar: 'تركيبة فرنسية نادرة بتفاصيل زهرية وخشبية دافئة.', en: 'Rare French blend with floral and warm woody notes.' } },
-            { id: 11, name: { ar: 'عطر توم فورد بلک أوركيد بارفيوم', en: 'Tom Ford Black Orchid Parfum' }, price: 950, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800', description: { ar: 'سحر الليل وجاذبية لا تقاوم بخلاصة السوسن السوداء.', en: 'Night magic and irresistible allure with black orchid essence.' } },
-            { id: 12, name: { ar: 'عطر كريد أفينتوس كلاسيكي', en: 'Creed Aventus Classic' }, price: 1450, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800', description: { ar: 'رجولة وقوة بتركيبة منعشة من الأناناس والتوابل النادرة.', en: 'Masculine strength with fresh pineapple and rare spices.' } },
-            { id: 13, name: { ar: 'عطر جيفنشي جنتلمان إديس', en: 'Givenchy Gentleman EDP' }, price: 780, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://media.zid.store/bfaa3454-0e90-4f91-91c7-be4cb1752ac8/9153bb3d-865c-48d0-9bf8-164dbb7fdf67.jpg', description: { ar: 'أناقة فرنسية خالدة بروائح خشبية وحمضيات متوازنة.', en: 'Timeless French elegance with woody and balanced citrus notes.' } },
-            { id: 14, name: { ar: 'عطر ديور سافاج إليكسير', en: 'Dior Sauvage Elixir' }, price: 1100, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRanjisycazIl7StpQcVt4It9L_5NwY2bkXJw&s', description: { ar: 'تركيز عالي يدوم 24 ساعة بخلاصة العنبر والفانيليا.', en: 'High concentration lasts 24 hours with amber and vanilla essence.' } },
-            { id: 15, name: { ar: 'عطر كارتييه بانثر ديكلريشن', en: 'Cartier Panthère Déclaration' }, price: 1350, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://mnstator.com/image/cache/catalog/%D9%83%D8%A7%D8%B1%D8%AA%D9%8A%D8%B1/cartier-la-panthere-noir-absolu-eau-de-parfum-for-women_-800x800.jpg', description: { ar: 'أنوثة وجاذبية بزهور البرغموت والياسمين الملكي.', en: 'Femininity and allure with bergamot and royal jasmine.' } },
-            
-            { id: 16, name: { ar: 'محفظة الجلد الإيطالي الفاخرة', en: 'Italian Leather Luxury Wallet' }, price: 450, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=800', description: { ar: 'جلد طبيعي 100% معالج يدوياً بمواصفات عالمية.', en: '100% natural leather, hand-processed to global standards.' } },
-            { id: 17, name: { ar: 'حقيبة يد جلد تمساح أصلي', en: 'Genuine Crocodile Leather Handbag' }, price: 3200, category: { ar: 'جلديات', en: 'Leather Goods' }, image:'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800', description: { ar: 'حقيبة يد نسائية فاخرة بجلد تمساح طبيعي معتمد.', en: 'Luxury women handbag with certified genuine crocodile leather.' } },
-            { id: 18, name: { ar: 'حزام جلد فيرزاتشي إيطالي', en: 'Versace Italian Leather Belt' }, price: 680, category: { ar: 'جلديات', en: 'Leather Goods' }, image:'https://assets.levelshoes.com/cdn-cgi/image/width=1500,height=2100,quality=95,format=webp/media/catalog/product/1/0/1004009-1a11597-1b00v_1.jpg?ts=20240703031015', description: { ar: 'إكسسوار رجالي فاخر بإبزيم ذهبي وخياطة يدوية دقيقة.', en: 'Luxury men accessory with golden buckle and fine hand stitching.' } },
-            { id: 19, name: { ar: 'محفظة كارتير بانثر الجلدية', en: 'Cartier Panthère Leather Wallet' }, price: 1200, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://media.zid.store/56de92c8-32be-487a-833b-86709b8ad541/1d5ca781-5625-454f-85a5-52375c0eb6d9.jpg', description: { ar: 'محفظة نسائية بجلد العجل ومشبك ذهبي مرصع.', en: 'Ladies wallet with calfskin leather and studded golden clasp.' } },
-            { id: 20, name: { ar: 'شنطة ظهر جلد برادا نايلون', en: 'Prada Nylon Leather Backpack' }, price: 2100, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=800', description: { ar: 'جمعت بين الجلد الإيطالي والنايلون عالي الجودة.', en: 'Combines Italian leather with high-quality nylon.' } },
-            { id: 21, name: { ar: 'محفظة رجالية جلد غزال لامع', en: 'Shiny Goatskin Men Wallet' }, price: 890, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://dipelle.net/wp-content/uploads/2024/03/%D9%85%D8%AD%D9%81%D8%B8%D9%87-%D8%B1%D8%AC%D8%A7%D9%84%D9%8A%D8%8C-%D9%85%D8%AD%D9%81%D8%B8%D8%A9-%D8%AC%D9%84%D8%AF-%D8%B7%D8%A8%D9%8A%D8%B9%D9%8A.jpg', description: { ar: 'تصميم نحيف وعملي بجيوب متعددة للبطاقات.', en: 'Sleek, practical design with multiple card pockets.' } },
-            
-            { id: 22, name: { ar: 'نظارات شمسية بريميوم كلاسيكية', en: 'Premium Classic Sunglasses' }, price: 1200, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=800', description: { ar: 'عدسات مستقطبة تحمي عينيك بأناقة تامة في كل الأوقات.', en: 'Polarized lenses protect your eyes with complete elegance.' } },
-            { id: 23, name: { ar: 'ربطة عنق حريرية فندي المحدودة', en: 'Limited Edition Fendi Silk Tie' }, price: 450, category: { ar: 'اكسسوارات', en: 'Accessories' }, image:'https://m.media-amazon.com/images/I/51yFFvm-L8L._AC_SY350_.jpg', description: { ar: 'حرير إيطالي طبيعي بنسبة 100% بتصميم هندسي فريد.', en: '100% natural Italian silk with unique geometric design.' } },
-            { id: 24, name: { ar: 'أحذية جلدية برادا رسمية', en: 'Prada Formal Leather Shoes' }, price: 2800, category: { ar: 'اكسسوارات', en: 'Accessories' }, image:'https://cdn4.arabiccoupon.com/sites/default/files/images/04-Oct-2020_LatestNews-6-Formal-Men-shoes-arrived-the-GCC-market-ARnEN-3--Steve-Madden-Decklan-lace-ups.jpg', description: { ar: 'حرفية إيطالية عالية بجلد العجل ونعل مطاطي مريح.', en: 'High Italian craftsmanship with calfskin leather and comfortable rubber sole.' } },
-            { id: 25, name: { ar: 'قلم مونت بلانك أس بروكسي', en: 'Montblanc Etoile Pen' }, price: 1650, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://m.media-amazon.com/images/I/51ZXGSgg5lL._AC_SL1000_.jpg', description: { ar: 'قلم حبر فاخر بغطاء ذهبي ونقش يدوي فريد.', en: 'Luxury fountain pen with golden cap and unique hand engraving.' } },
-            { id: 26, name: { ar: 'منديل جيب حرير بربري', en: 'Burberry Pocket Silk Handkerchief' }, price: 280, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://cdn.theluxurycloset.com/uploads/optimize/products/750x750/luxury-women-burberry-new-accessories-p80354-001.jpg', description: { ar: 'قطعة حرير إنجليزي بنمط المربعات التقليدي.', en: 'English silk piece with traditional check pattern.' } },
-            { id: 27, name: { ar: 'أزرار كم ذهبية تيفاني', en: 'Tiffany Golden Cufflinks' }, price: 2100, category: { ar: 'اكسسوارات', en: 'Accessories' }, image:'https://images-eu.ssl-images-amazon.com/images/I/31stno2J5nL._AC_UL600_SR600,600_.jpg', description: { ar: 'أزرار كم فاخرة بذهب عيار 18 ونقشة تيفاني المميزة.', en: 'Luxury cufflinks with 18k gold and signature Tiffany engraving.' } }
-        ];
-
-        let cart = [];
-        let currentRating = 0;
-        let isEnglish = false;
-
-        window.toggleMobileMenu = function() {
-            document.getElementById('mobile-menu').classList.toggle('menu-open');
-        };
-
-        window.showPage = function(pageId) {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden-section'));
-            const target = document.getElementById(pageId + '-page');
-            if(target) target.classList.remove('hidden-section');
-            window.scrollTo(0, 0);
-            
-            if (pageId === 'home') renderFeatured();
-            if (pageId === 'shop') renderShop(PRODUCTS);
-            if (pageId === 'cart') renderCart();
-        };
-
-        function renderFeatured() {
-            const container = document.getElementById('featured-products');
-            if(container) container.innerHTML = PRODUCTS.slice(0, 3).map(p => generateProductHTML(p)).join('');
-        }
-
-        function renderShop(list) {
-            const container = document.getElementById('shop-grid');
-            if(container) container.innerHTML = list.map(p => generateProductHTML(p)).join('');
-        }
-
-        window.filterProducts = function(category) {
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            renderShop(category === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category.en === category || p.category.ar === category));
-        };
-
-        function generateProductHTML(p) {
-            return `
-                <div class="product-card group relative flex flex-col h-full animate-fade-in" data-category="${p.category.en}">
-                    <div class="aspect-square overflow-hidden cursor-pointer p-2" onclick="viewProduct(${p.id})">
-                        <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-700">
-                    </div>
-                    <div class="px-4 pb-4 pt-2 flex flex-col flex-grow space-y-3">
-                        <div class="flex-grow">
-                            <span class="text-[9px] uppercase tracking-widest text-zinc-500 block mb-1 product-description-text">${isEnglish ? p.category.en : p.category.ar}</span>
-                            <h3 class="product-title font-bold text-sm mb-1 leading-tight product-description-text">${isEnglish ? p.name.en : p.name.ar}</h3>
-                            <div class="product-price text-yellow-500 font-bold text-base product-description-text">${p.price.toLocaleString()} <span class="text-[10px]">ر.ي</span></div>
-                        </div>
-                        <button onclick="addToCart(${p.id})" class="w-full py-2.5 bg-gradient-to-r from-zinc-700 to-zinc-800 text-white text-xs font-bold rounded-xl transition-all hover:from-yellow-500 hover:to-yellow-600 hover:text-black">
-                            ${isEnglish ? 'Add to Cart' : 'إضافة للسلة'}
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-
-        window.addToCart = function(id) {
-            const product = PRODUCTS.find(p => p.id === id);
-            const existing = cart.find(item => item.id === id);
-            if (existing) { existing.qty++; } else { cart.push({ ...product, qty: 1 }); }
-            updateCartUI();
-            showToast(isEnglish ? `"${product.name.en}" added to cart` : `تمت إضافة "${product.name.ar}"`);
-        };
-
-        function updateCartUI() {
-            const count = cart.reduce((acc, item) => acc + item.qty, 0);
-            const badge = document.getElementById('cart-count');
-            badge.innerText = count;
-            badge.classList.toggle('hidden', count === 0);
-        }
-
-        function renderCart() {
-            const container = document.getElementById('cart-items');
-            const sidebar = document.getElementById('cart-sidebar');
-            if (!container) return;
-            
-            if (cart.length === 0) {
-                container.innerHTML = `<div class="text-center py-20 text-zinc-600 product-description-text">${isEnglish ? 'Your cart is currently empty of luxury.' : 'سلتك خالية من الفخامة حالياً.'}</div>`;
-                sidebar.classList.add('hidden');
-                return;
-            }
-            
-            sidebar.classList.remove('hidden');
-            let total = 0;
-            container.innerHTML = cart.map(item => {
-                total += item.price * item.qty;
-                return `
-                    <div class="flex gap-4 md:gap-6 p-4 md:p-6 bg-zinc-900/40 rounded-2xl border border-white/5 items-center">
-                        <img src="${item.image}" class="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover">
-                        <div class="flex-1">
-                            <div class="font-bold text-xs md:text-sm mb-1 product-description-text">${isEnglish ? item.name.en : item.name.ar}</div>
-                            <div class="text-yellow-500 text-[10px] md:text-xs">${item.price.toLocaleString()} ر.ي</div>
-                        </div>
-                        <div class="flex items-center bg-black rounded-full px-2 py-1 border border-white/10 text-[10px]">
-                            <button onclick="changeQty(${item.id}, -1)" class="w-5 h-5">-</button>
-                            <span class="px-3">${item.qty}</span>
-                            <button onclick="changeQty(${item.id}, 1)" class="w-5 h-5">+</button>
-                        </div>
-                        <button onclick="removeFromCart(${item.id})" class="text-zinc-600 hover:text-red-500 transition-colors px-2"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                `;
-            }).join('');
-            document.getElementById('total-price').innerText = `${total.toLocaleString()} ر.ي`;
-        }
-
-        window.changeQty = function(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if (item) {
-                item.qty = Math.max(1, item.qty + delta);
-                renderCart();
-                updateCartUI();
-            }
-        };
-
-        window.removeFromCart = function(id) {
-            cart = cart.filter(i => i.id !== id);
-            renderCart();
-            updateCartUI();
-        };
-
-        document.getElementById('checkout-form').onsubmit = function(e) {
-            e.preventDefault();
-            const name = isEnglish ? document.getElementById('cust-name-en').value : document.getElementById('cust-name').value;
-            const total = document.getElementById('total-price').innerText;
-            document.getElementById('success-message').innerText = isEnglish ? `Mr. ${name}, thank you for trusting Axyonx. Your order of ${total} has been processed.` : `سيد ${name}، شكراً لثقتك بـ اكسيونكس. تم تجهيز طلبك بقيمة ${total}.`;
-            document.getElementById('success-modal').style.display = 'flex';
-            cart = [];
-            updateCartUI();
-        };
-
-        window.closeSuccessModal = function() {
-            document.getElementById('success-modal').style.display = 'none';
-            showPage('home');
-        };
-
-        window.viewProduct = function(id) {
-            const p = PRODUCTS.find(item => item.id === id);
-            const container = document.getElementById('product-detail-content');
-            showPage('detail');
-            container.setAttribute('data-product-id', id);
-            container.innerHTML = `
-                <div class="aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-900 border border-white/5">
-                    <img src="${p.image}" class="w-full h-full object-cover">
-                </div>
-                <div class="space-y-6 md:space-y-10">
-                    <div class="space-y-3">
-                        <span class="text-yellow-500 text-[10px] font-black tracking-widest uppercase product-description-text">${isEnglish ? p.category.en : p.category.ar}</span>
-                        <h1 class="text-3xl md:text-5xl font-bold leading-tight product-description-text">${isEnglish ? p.name.en : p.name.ar}</h1>
-                    </div>
-                    <div class="text-3xl font-light text-yellow-500">${p.price.toLocaleString()} ر.ي</div>
-                    <p class="text-sm md:text-lg leading-relaxed font-light product-description-text">${isEnglish ? p.description.en : p.description.ar}</p>
-                    <button onclick="addToCart(${p.id})" class="w-full py-5 bg-white text-black font-black uppercase tracking-widest rounded-full hover:bg-yellow-500 transition-all text-sm product-description-text">${isEnglish ? 'Add to Cart' : 'إضافة إلى السلة'}</button>
-                    
-                    <div class="flex items-center gap-6 pt-6 border-t border-white/5">
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-shipping-fast text-yellow-500"></i>
-                            <span class="text-[10px] text-zinc-500 ar-text product-description-text">توصيل سريع</span>
-                            <span class="text-[10px] text-zinc-500 en-text product-description-text">Fast Delivery</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-shield-alt text-yellow-500"></i>
-                            <span class="text-[10px] text-zinc-500 ar-text product-description-text">ضمان أكسيونكس</span>
-                            <span class="text-[10px] text-zinc-500 en-text product-description-text">Axyonx Warranty</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        };
-
-        window.toggleReviewForm = function() {
-            document.getElementById('review-form-container').classList.toggle('hidden');
-        };
-
-        window.setRating = function(n) {
-            currentRating = n;
-            const stars = document.getElementById('star-selector').children;
-            for(let i=0; i<5; i++) {
-                if(i < n) stars[i].classList.add('text-yellow-500');
-                else stars[i].classList.remove('text-yellow-500');
-            }
-        };
-
-        window.submitReview = function() {
-            const name = isEnglish ? document.getElementById('rev-name-en').value : document.getElementById('rev-name').value;
-            const text = isEnglish ? document.getElementById('rev-text-en').value : document.getElementById('rev-text').value;
-            if(!name || !text || currentRating === 0) {
-                showToast(isEnglish ? "Please complete all review fields" : "يرجى إكمال جميع بيانات التقييم");
-                return;
-            }
-
-            const list = document.getElementById('reviews-list');
-            const newReview = document.createElement('div');
-            newReview.className = "review-item p-6 rounded-2xl animate-fade-in";
-            
-            let starsHtml = "";
-            for(let i=0; i<5; i++) {
-                starsHtml += `<i class="fas fa-star ${i < currentRating ? 'text-yellow-500' : 'text-zinc-800'}"></i>`;
-            }
-
-            newReview.innerHTML = `
-                <div class="flex justify-between items-start mb-3">
-                    <div class="font-bold text-sm product-description-text">${name}</div>
-                    <div class="star-rating text-[10px]">${starsHtml}</div>
-                </div>
-                <p class="text-sm text-zinc-400 font-light leading-relaxed product-description-text">${text}</p>
-                <div class="mt-3 text-[10px] text-zinc-600 product-description-text">${isEnglish ? 'Now' : 'الآن'}</div>
-            `;
-
-            list.prepend(newReview);
-            if(isEnglish) {
-                document.getElementById('rev-name-en').value = "";
-                document.getElementById('rev-text-en').value = "";
-            } else {
-                document.getElementById('rev-name').value = "";
-                document.getElementById('rev-text').value = "";
-            }
-            setRating(0);
-            toggleReviewForm();
-            showToast(isEnglish ? "Thank you for sharing your review" : "شكراً لمشاركتنا رأيك");
-        };
-
-        window.toggleSearch = function() { 
-            document.getElementById('search-overlay').classList.toggle('hidden'); 
-            if(!document.getElementById('search-overlay').classList.contains('hidden')) {
-                document.getElementById('search-input').focus();
-            }
-        };
+<script>
+    const PRODUCTS = [
+        { id: 1, name: { ar: 'ساعة أكسيونكس الملكية بالإصدار الخاص', en: 'Axyonx Royal Special Edition Watch' }, price: 12500, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800', description: { ar: 'ساعة مصنوعة يدوياً من التيتانيوم والياقوت بتصميم عصري وفريد.', en: 'Handcrafted titanium and sapphire watch with modern, unique design.' } },
+        { id: 2, name: { ar: 'ساعة رويال أوديمار بيجيه كلاسيكية', en: 'Royal Oak Perpetual Classic Watch' }, price: 8900, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?q=80&w=800', description: { ar: 'تحفة فنية سويسرية بميناء ذهبي وحركة أوتوماتيكية دقيقة.', en: 'Swiss artistry with golden dial and precise automatic movement.' } },
+        { id: 3, name: { ar: 'ساعة باتيك فيليب كالاترافا الفاخرة', en: 'Patek Philippe Calatrava Luxury Watch' }, price: 15600, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1548171915-e79a380a2a4b?q=80&w=800', description: { ar: 'أيقونة الفخامة والرقي بعلبة ذهبية عيار 18 قيراط.', en: 'Icon of luxury and elegance with 18k gold case.' } },
+        { id: 4, name: { ar: 'ساعة رولكس ديت جوست الإصدار المحدود', en: 'Rolex Day-Date Limited Edition' }, price: 22300, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://media.mapp.sa/100705/conversions/202210010240_97054-preview.jpeg', description: { ar: 'أداء لا يُضاهى بتصميم فريد ومقاومة للماء حتى 300 متر.', en: 'Unmatched performance with unique design, water resistant to 300m.' } },
+        { id: 5, name: { ar: 'ساعة أوميغا سيدماستر بروفيشنال', en: 'Omega Seamaster Professional' }, price: 9800, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1698433974913-2728583f2b9c?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: { ar: 'ساعة رياضية فاخرة بحركة ميكانيكية متطورة.', en: 'Luxury sports watch with advanced mechanical movement.' } },
+        { id: 6, name: { ar: 'ساعة تاج هوير كاريرا سبورت', en: 'TAG Heuer Carrera Sport' }, price: 7200, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1622434641406-a158123450f9?q=80&w=704&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: { ar: 'تصميم رياضي أنيق مع ميناء كرونوغراف متعدد الوظائف.', en: 'Sleek sports design with multifunction chronograph dial.' } },
+        { id: 7, name: { ar: 'ساعة هابلوت بيغ بانغ يونيكو', en: 'Hublot Big Bang Unico' }, price: 18900, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?q=80&w=800', description: { ar: 'ابتكار هندسي بعلبة تيتانيوم وسوار مطاط فاخر.', en: 'Engineering innovation with titanium case and luxury rubber strap.' } },
+        { id: 8, name: { ar: 'ساعة شوبارد إمبيريال كولكشن', en: 'Chopard Imperial Collection' }, price: 13400, category: { ar: 'ساعات', en: 'Watches' }, image: 'https://images.unsplash.com/photo-1696778382401-b9f26e43df36?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: { ar: 'فخامة ملكية بألماس طبيعي وميناء مرصع بالجواهر.', en: 'Regal luxury with natural diamonds and jewel-studded dial.' } },
         
-        window.handleSearch = function(query) {
-            const container = document.getElementById('search-results');
-            if(!query) { container.innerHTML = ''; return; }
-            const results = PRODUCTS.filter(p => 
-                (isEnglish ? p.name.en : p.name.ar).includes(query) || 
-                (isEnglish ? p.category.en : p.category.ar).includes(query)
-            );
-            container.innerHTML = results.map(p => `
-                <div onclick="viewProduct(${p.id}); toggleSearch();" class="flex items-center gap-4 bg-zinc-900/50 p-4 rounded-xl cursor-pointer hover:bg-yellow-500 hover:text-black">
-                    <img src="${p.image}" class="w-12 h-12 rounded-lg object-cover">
-                    <div class="text-sm"><div class="font-bold product-description-text">${isEnglish ? p.name.en : p.name.ar}</div><div class="opacity-60">${p.price.toLocaleString()} ر.ي</div></div>
-                </div>
-            `).join('');
-        };
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.innerText = msg;
-            toast.style.opacity = '1';
-            toast.style.pointerEvents = 'auto';
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.pointerEvents = 'none';
-            }, 3000);
-        }
-
-        window.toggleChat = function() { document.getElementById('chat-window').classList.toggle('hidden'); };
+        { id: 9, name: { ar: 'عطر ليالي الشرق بتركيبة العود النادرة', en: 'Orient Nights Oud Rare Fragrance' }, price: 850, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://cdn.salla.sa/wWORaV/K3mCCq8W4rG28Lpdg3vwlPrHbbmgf2Hj9dowqwNS.jpg', description: { ar: 'مزيج ساحر من العود الملكي والمسك الأبيض يدوم طويلاً.', en: 'Enchanting blend of royal oud and white musk, long-lasting.' } },
+        { id: 10, name: { ar: 'عطر كريستال رويال من السيفورا', en: 'Crystal Royal Sephora' }, price: 1200, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://cdn.salla.sa/ZjBwP/ILGXGy7qkxDxRRxTm2LiUSGng8l8OrdpTapnyAa8.png', description: { ar: 'تركيبة فرنسية نادرة بتفاصيل زهرية وخشبية دافئة.', en: 'Rare French blend with floral and warm woody notes.' } },
+        { id: 11, name: { ar: 'عطر توم فورد بلک أوركيد بارفيوم', en: 'Tom Ford Black Orchid Parfum' }, price: 950, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800', description: { ar: 'سحر الليل وجاذبية لا تقاوم بخلاصة السوسن السوداء.', en: 'Night magic and irresistible allure with black orchid essence.' } },
+        { id: 12, name: { ar: 'عطر كريد أفينتوس كلاسيكي', en: 'Creed Aventus Classic' }, price: 1450, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800', description: { ar: 'رجولة وقوة بتركيبة منعشة من الأناناس والتوابل النادرة.', en: 'Masculine strength with fresh pineapple and rare spices.' } },
+        { id: 13, name: { ar: 'عطر جيفنشي جنتلمان إديس', en: 'Givenchy Gentleman EDP' }, price: 780, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://media.zid.store/bfaa3454-0e90-4f91-91c7-be4cb1752ac8/9153bb3d-865c-48d0-9bf8-164dbb7fdf67.jpg', description: { ar: 'أناقة فرنسية خالدة بروائح خشبية وحمضيات متوازنة.', en: 'Timeless French elegance with woody and balanced citrus notes.' } },
+        { id: 14, name: { ar: 'عطر ديور سافاج إليكسير', en: 'Dior Sauvage Elixir' }, price: 1100, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRanjisycazIl7StpQcVt4It9L_5NwY2bkXJw&s', description: { ar: 'تركيز عالي يدوم 24 ساعة بخلاصة العنبر والفانيليا.', en: 'High concentration lasts 24 hours with amber and vanilla essence.' } },
+        { id: 15, name: { ar: 'عطر كارتييه بانثر ديكلريشن', en: 'Cartier Panthère Déclaration' }, price: 1350, category: { ar: 'عطور', en: 'Fragrance' }, image: 'https://mnstator.com/image/cache/catalog/%D9%83%D8%A7%D8%B1%D8%AA%D9%8A%D8%B1/cartier-la-panthere-noir-absolu-eau-de-parfum-for-women_-800x800.jpg', description: { ar: 'أنوثة وجاذبية بزهور البرغموت والياسمين الملكي.', en: 'Femininity and allure with bergamot and royal jasmine.' } },
         
-        window.sendMessage = async function() {
-            const input = isEnglish ? document.getElementById('chat-input-en') : document.getElementById('chat-input');
-            const container = document.getElementById('chat-messages');
-            if (!input.value) return;
-            const userMsg = input.value;
-            container.innerHTML += `<div class="bg-yellow-500 text-black p-3 rounded-xl rounded-br-none self-end max-w-[85%] animate-fade-in">${userMsg}</div>`;
-            input.value = '';
-            container.scrollTop = container.scrollHeight;
-            
-            setTimeout(() => {
-                container.innerHTML += `<div class="bg-zinc-800 text-zinc-300 p-3 rounded-xl rounded-bl-none self-start max-w-[85%] animate-fade-in">${isEnglish ? 'We are here to serve you with the finest products. Would you like to see our luxury watches?' : 'نحن هنا لخدمتكم بأفضل المنتجات. هل ترغب برؤية الساعات الفاخرة؟'}</div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 800);
-        };
+        { id: 16, name: { ar: 'محفظة الجلد الإيطالي الفاخرة', en: 'Italian Leather Luxury Wallet' }, price: 450, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=800', description: { ar: 'جلد طبيعي 100% معالج يدوياً بمواصفات عالمية.', en: '100% natural leather, hand-processed to global standards.' } },
+        { id: 17, name: { ar: 'حقيبة يد جلد تمساح أصلي', en: 'Genuine Crocodile Leather Handbag' }, price: 3200, category: { ar: 'جلديات', en: 'Leather Goods' }, image:'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800', description: { ar: 'حقيبة يد نسائية فاخرة بجلد تمساح طبيعي معتمد.', en: 'Luxury women handbag with certified genuine crocodile leather.' } },
+        { id: 18, name: { ar: 'حزام جلد فيرزاتشي إيطالي', en: 'Versace Italian Leather Belt' }, price: 680, category: { ar: 'جلديات', en: 'Leather Goods' }, image:'https://assets.levelshoes.com/cdn-cgi/image/width=1500,height=2100,quality=95,format=webp/media/catalog/product/1/0/1004009-1a11597-1b00v_1.jpg?ts=20240703031015', description: { ar: 'إكسسوار رجالي فاخر بإبزيم ذهبي وخياطة يدوية دقيقة.', en: 'Luxury men accessory with golden buckle and fine hand stitching.' } },
+        { id: 19, name: { ar: 'محفظة كارتير بانثر الجلدية', en: 'Cartier Panthère Leather Wallet' }, price: 1200, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://media.zid.store/56de92c8-32be-487a-833b-86709b8ad541/1d5ca781-5625-454f-85a5-52375c0eb6d9.jpg', description: { ar: 'محفظة نسائية بجلد العجل ومشبك ذهبي مرصع.', en: 'Ladies wallet with calfskin leather and studded golden clasp.' } },
+        { id: 20, name: { ar: 'شنطة ظهر جلد برادا نايلون', en: 'Prada Nylon Leather Backpack' }, price: 2100, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=800', description: { ar: 'جمعت بين الجلد الإيطالي والنايلون عالي الجودة.', en: 'Combines Italian leather with high-quality nylon.' } },
+        { id: 21, name: { ar: 'محفظة رجالية جلد غزال لامع', en: 'Shiny Goatskin Men Wallet' }, price: 890, category: { ar: 'جلديات', en: 'Leather Goods' }, image: 'https://dipelle.net/wp-content/uploads/2024/03/%D9%85%D8%AD%D9%81%D8%B8%D9%87-%D8%B1%D8%AC%D8%A7%D9%84%D9%8A%D8%8C-%D9%85%D8%AD%D9%81%D8%B8%D8%A9-%D8%AC%D9%84%D8%AF-%D8%B7%D8%A8%D9%8A%D8%B9%D9%8A.jpg', description: { ar: 'تصميم نحيف وعملي بجيوب متعددة للبطاقات.', en: 'Sleek, practical design with multiple card pockets.' } },
+        
+        { id: 22, name: { ar: 'نظارات شمسية بريميوم كلاسيكية', en: 'Premium Classic Sunglasses' }, price: 1200, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=800', description: { ar: 'عدسات مستقطبة تحمي عينيك بأناقة تامة في كل الأوقات.', en: 'Polarized lenses protect your eyes with complete elegance.' } },
+        { id: 23, name: { ar: 'ربطة عنق حريرية فندي المحدودة', en: 'Limited Edition Fendi Silk Tie' }, price: 450, category: { ar: 'اكسسوارات', en: 'Accessories' }, image:'https://m.media-amazon.com/images/I/51yFFvm-L8L._AC_SY350_.jpg', description: { ar: 'حرير إيطالي طبيعي بنسبة 100% بتصميم هندسي فريد.', en: '100% natural Italian silk with unique geometric design.' } },
+        { id: 24, name: { ar: 'أحذية جلدية برادا رسمية', en: 'Prada Formal Leather Shoes' }, price: 2800, category: { ar: 'اكسسوارات', en: 'Accessories' }, image:'https://cdn4.arabiccoupon.com/sites/default/files/images/04-Oct-2020_LatestNews-6-Formal-Men-shoes-arrived-the-GCC-market-ARnEN-3--Steve-Madden-Decklan-lace-ups.jpg', description: { ar: 'حرفية إيطالية عالية بجلد العجل ونعل مطاطي مريح.', en: 'High Italian craftsmanship with calfskin leather and comfortable rubber sole.' } },
+        { id: 25, name: { ar: 'قلم مونت بلانك أس بروكسي', en: 'Montblanc Etoile Pen' }, price: 1650, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://m.media-amazon.com/images/I/51ZXGSgg5lL._AC_SL1000_.jpg', description: { ar: 'قلم حبر فاخر بغطاء ذهبي ونقش يدوي فريد.', en: 'Luxury fountain pen with golden cap and unique hand engraving.' } },
+        { id: 26, name: { ar: 'منديل جيب حرير بربري', en: 'Burberry Pocket Silk Handkerchief' }, price: 280, category: { ar: 'اكسسوارات', en: 'Accessories' }, image: 'https://cdn.theluxurycloset.com/uploads/optimize/products/750x750/luxury-women-burberry-new-accessories-p80354-001.jpg', description: { ar: 'قطعة حرير إنجليزي بنمط المربعات التقليدي.', en: 'English silk piece with traditional check pattern.' } },
+        { id: 27, name: { ar: 'أزرار كم ذهبية تيفاني', en: 'Tiffany Golden Cufflinks' }, price: 2100, category: { ar: 'اكسسوارات', en: 'Accessories' }, image:'https://images-eu.ssl-images-amazon.com/images/I/31stno2J5nL._AC_UL600_SR600,600_.jpg', description: { ar: 'أزرار كم فاخرة بذهب عيار 18 ونقشة تيفاني المميزة.', en: 'Luxury cufflinks with 18k gold and signature Tiffany engraving.' } }
+    ];
 
-        window.toggleTheme = function() {
-            document.body.classList.toggle('light-mode');
-            const themeIcon = document.querySelector('#theme-toggle i');
-            if(document.body.classList.contains('light-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        };
+    let cart = [];
+    let currentRating = 0;
+    let isEnglish = false;
+    let activeTab = 'all'; // متغير لتتبع التبويب النشط
 
-        window.toggleLanguage = function() {
-            isEnglish = !isEnglish;
-            document.body.dir = isEnglish ? 'ltr' : 'rtl';
-            document.body.lang = isEnglish ? 'en' : 'ar';
-            
-            // Update all text elements
-            document.querySelectorAll('.ar-text').forEach(el => {
-                el.style.display = isEnglish ? 'none' : 'block';
-            });
-            document.querySelectorAll('.en-text').forEach(el => {
-                el.style.display = isEnglish ? 'block' : 'none';
-            });
-            
-            // Update toggle button text
-            document.getElementById('lang-toggle').innerHTML = isEnglish ? 'AR' : 'EN';
-            
-            // Re-render current page
-            const currentPage = document.querySelector('.page-content:not(.hidden-section)').id;
-            if(currentPage === 'home-page') renderFeatured();
-            else if(currentPage === 'shop-page') renderShop(PRODUCTS);
-            else if(currentPage === 'cart-page') renderCart();
-            else if(currentPage === 'detail-page') {
-                // Re-render product detail if user is on detail page
-                const productId = document.getElementById('product-detail-content').getAttribute('data-product-id');
-                if(productId) viewProduct(parseInt(productId));
-            }
-            
-            localStorage.setItem('lang', isEnglish ? 'en' : 'ar');
-        };
+    // دالة عرض/إخفاء القائمة الجانبية
+    window.toggleMobileMenu = function() {
+        document.getElementById('mobile-menu').classList.toggle('menu-open');
+    };
 
-        // Load saved preferences
-        window.onload = () => {
-            // Load theme
-            const savedTheme = localStorage.getItem('theme');
-            if(savedTheme === 'light') {
-                document.body.classList.add('light-mode');
-                document.querySelector('#theme-toggle i').classList.remove('fa-moon');
-                document.querySelector('#theme-toggle i').classList.add('fa-sun');
-            }
-            
-            // Load language
-            const savedLang = localStorage.getItem('lang');
-            if(savedLang === 'en') {
-                isEnglish = true;
-                document.body.dir = 'ltr';
-                document.body.lang = 'en';
-                document.querySelectorAll('.ar-text').forEach(el => el.style.display = 'none');
-                document.querySelectorAll('.en-text').forEach(el => el.style.display = 'block');
-                document.getElementById('lang-toggle').innerHTML = 'AR';
-            }
-            
-            renderFeatured();
-        };
+    // دالة تبديل الوضع النهاري/الليلي
+    window.toggleTheme = function() {
+        document.body.classList.toggle('light-mode');
+        const themeIcon = document.querySelector('#theme-toggle i');
+        if(document.body.classList.contains('light-mode')) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            document.getElementById('dark-bg').style.display = 'none';
+            document.getElementById('light-bg').style.display = 'block';
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            document.getElementById('dark-bg').style.display = 'block';
+            document.getElementById('light-bg').style.display = 'none';
+        }
+        localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+    };
 
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 40) {
-                nav.classList.add('glass-nav');
-                nav.classList.remove('py-4', 'md:py-6');
-                nav.classList.add('py-3');
-            } else {
-                nav.classList.remove('glass-nav');
-                nav.classList.remove('py-3');
-                nav.classList.add('py-4', 'md:py-6');
+    // دالة تبديل اللغة
+    window.toggleLanguage = function() {
+        isEnglish = !isEnglish;
+        document.body.dir = isEnglish ? 'ltr' : 'rtl';
+        document.body.lang = isEnglish ? 'en' : 'ar';
+        
+        document.querySelectorAll('.ar-text').forEach(el => {
+            el.style.display = isEnglish ? 'none' : 'block';
+        });
+        document.querySelectorAll('.en-text').forEach(el => {
+            el.style.display = isEnglish ? 'block' : 'none';
+        });
+        
+        document.getElementById('lang-toggle').innerHTML = isEnglish ? 'AR' : 'EN';
+        
+        // إعادة عرض الصفحة الحالية
+        const currentPage = document.querySelector('.page-content:not(.hidden-section)').id;
+        if(currentPage === 'home-page') renderFeatured();
+        else if(currentPage === 'shop-page') renderShopPage();
+        else if(currentPage === 'cart-page') renderCart();
+        else if(currentPage === 'detail-page') {
+            const productId = document.getElementById('product-detail-content').getAttribute('data-product-id');
+            if(productId) viewProduct(parseInt(productId));
+        }
+        
+        localStorage.setItem('lang', isEnglish ? 'en' : 'ar');
+    };
+
+    // دالة الانتقال بين الصفحات
+    window.showPage = function(pageId) {
+        document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden-section'));
+        const target = document.getElementById(pageId + '-page');
+        if(target) target.classList.remove('hidden-section');
+        window.scrollTo(0, 0);
+        
+        if (pageId === 'home') renderFeatured();
+        if (pageId === 'shop') renderShopPage();
+        if (pageId === 'cart') renderCart();
+    };
+
+    // عرض المنتجات المميزة
+    function renderFeatured() {
+        const container = document.getElementById('featured-products');
+        if(container) container.innerHTML = PRODUCTS.slice(0, 3).map(p => generateProductHTML(p)).join('');
+    }
+
+    // عرض صفحة المتجر مع التبويب النشط
+    function renderShopPage() {
+        // تفعيل التبويب المخزن
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        
+        tabs.forEach(tab => {
+            const onclickText = tab.getAttribute('onclick');
+            if (onclickText && onclickText.includes(`'${activeTab}'`)) {
+                tab.classList.add('active');
             }
         });
-    </script>
+        
+        // إذا لم يتم إيجاد تبويب، استخدم "الكل"
+        const hasActive = Array.from(tabs).some(tab => tab.classList.contains('active'));
+        if (!hasActive) {
+            tabs[0].classList.add('active');
+            activeTab = 'all';
+        }
+        
+        // عرض المنتجات
+        const container = document.getElementById('shop-grid');
+        const filteredProducts = activeTab === 'all' 
+            ? PRODUCTS 
+            : PRODUCTS.filter(p => p.category.en === activeTab || p.category.ar === activeTab);
+        
+        if(container) container.innerHTML = filteredProducts.map(p => generateProductHTML(p)).join('');
+    }
+
+    // دالة تصفية المنتجات حسب التبويب
+    window.filterProducts = function(category) {
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        // تحديث التبويب النشط
+        activeTab = category;
+        
+        // عرض المنتجات المصفاة
+        const container = document.getElementById('shop-grid');
+        const filteredProducts = category === 'all' 
+            ? PRODUCTS 
+            : PRODUCTS.filter(p => p.category.en === category || p.category.ar === category);
+        
+        if(container) container.innerHTML = filteredProducts.map(p => generateProductHTML(p)).join('');
+    };
+
+    // إنشاء HTML للمنتج
+    function generateProductHTML(p) {
+        return `
+            <div class="product-card group relative flex flex-col h-full animate-fade-in" data-category="${p.category.en}">
+                <div class="aspect-square overflow-hidden cursor-pointer p-2" onclick="viewProduct(${p.id})">
+                    <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-700">
+                </div>
+                <div class="px-4 pb-4 pt-2 flex flex-col flex-grow space-y-3">
+                    <div class="flex-grow">
+                        <span class="text-[9px] uppercase tracking-widest text-zinc-500 block mb-1 product-description-text">${isEnglish ? p.category.en : p.category.ar}</span>
+                        <h3 class="product-title font-bold text-sm mb-1 leading-tight product-description-text">${isEnglish ? p.name.en : p.name.ar}</h3>
+                        <div class="product-price text-yellow-500 font-bold text-base product-description-text">${p.price.toLocaleString()} <span class="text-[10px]">ر.ي</span></div>
+                    </div>
+                    <button onclick="addToCart(${p.id})" class="w-full py-2.5 bg-gradient-to-r from-zinc-700 to-zinc-800 text-white text-xs font-bold rounded-xl transition-all hover:from-yellow-500 hover:to-yellow-600 hover:text-black">
+                        ${isEnglish ? 'Add to Cart' : 'إضافة للسلة'}
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    // إضافة منتج للسلة
+    window.addToCart = function(id) {
+        const product = PRODUCTS.find(p => p.id === id);
+        const existing = cart.find(item => item.id === id);
+        if (existing) { 
+            existing.qty++; 
+        } else { 
+            cart.push({ ...product, qty: 1 }); 
+        }
+        updateCartUI();
+        showToast(isEnglish ? `"${product.name.en}" added to cart` : `تمت إضافة "${product.name.ar}"`);
+    };
+
+    // تحديث عداد السلة
+    function updateCartUI() {
+        const count = cart.reduce((acc, item) => acc + item.qty, 0);
+        const badge = document.getElementById('cart-count');
+        badge.innerText = count;
+        badge.classList.toggle('hidden', count === 0);
+    }
+
+    // عرض صفحة السلة
+    function renderCart() {
+        const container = document.getElementById('cart-items');
+        const sidebar = document.getElementById('cart-sidebar');
+        if (!container) return;
+        
+        if (cart.length === 0) {
+            container.innerHTML = `<div class="text-center py-20 text-zinc-600 product-description-text">${isEnglish ? 'Your cart is currently empty of luxury.' : 'سلتك خالية من الفخامة حالياً.'}</div>`;
+            sidebar.classList.add('hidden');
+            return;
+        }
+        
+        sidebar.classList.remove('hidden');
+        let total = 0;
+        container.innerHTML = cart.map(item => {
+            total += item.price * item.qty;
+            return `
+                <div class="flex gap-4 md:gap-6 p-4 md:p-6 cart-item-card rounded-2xl items-center">
+                    <img src="${item.image}" class="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover">
+                    <div class="flex-1">
+                        <div class="font-bold text-xs md:text-sm mb-1 product-description-text">${isEnglish ? item.name.en : item.name.ar}</div>
+                        <div class="text-yellow-500 text-[10px] md:text-xs">${item.price.toLocaleString()} ر.ي</div>
+                    </div>
+                    <div class="flex items-center quantity-selector rounded-full px-2 py-1 border text-[10px]">
+                        <button onclick="changeQty(${item.id}, -1)" class="w-5 h-5">-</button>
+                        <span class="px-3">${item.qty}</span>
+                        <button onclick="changeQty(${item.id}, 1)" class="w-5 h-5">+</button>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="text-zinc-600 hover:text-red-500 transition-colors px-2"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            `;
+        }).join('');
+        document.getElementById('total-price').innerText = `${total.toLocaleString()} ر.ي`;
+    }
+
+    // تغيير كمية المنتج
+    window.changeQty = function(id, delta) {
+        const item = cart.find(i => i.id === id);
+        if (item) {
+            item.qty = Math.max(1, item.qty + delta);
+            renderCart();
+            updateCartUI();
+        }
+    };
+
+    // حذف منتج من السلة
+    window.removeFromCart = function(id) {
+        cart = cart.filter(i => i.id !== id);
+        renderCart();
+        updateCartUI();
+    };
+
+    // تأكيد الطلب
+    document.getElementById('checkout-form').onsubmit = function(e) {
+        e.preventDefault();
+        const name = isEnglish ? document.getElementById('cust-name-en').value : document.getElementById('cust-name').value;
+        const total = document.getElementById('total-price').innerText;
+        document.getElementById('success-message').innerText = isEnglish 
+            ? `Mr. ${name}, thank you for trusting Axyonx. Your order of ${total} has been processed.` 
+            : `سيد ${name}، شكراً لثقتك بـ اكسيونكس. تم تجهيز طلبك بقيمة ${total}.`;
+        document.getElementById('success-modal').style.display = 'flex';
+        cart = [];
+        updateCartUI();
+    };
+
+    // إغلاق نافذة النجاح
+    window.closeSuccessModal = function() {
+        document.getElementById('success-modal').style.display = 'none';
+        showPage('home');
+    };
+
+    // عرض تفاصيل المنتج
+    window.viewProduct = function(id) {
+        const p = PRODUCTS.find(item => item.id === id);
+        
+        // تحديد التبويب النشط بناءً على فئة المنتج
+        activeTab = p.category.en;
+        
+        const container = document.getElementById('product-detail-content');
+        showPage('detail');
+        container.setAttribute('data-product-id', id);
+        container.innerHTML = `
+            <div class="aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-900 border border-white/5">
+                <img src="${p.image}" class="w-full h-full object-cover">
+            </div>
+            <div class="space-y-6 md:space-y-10">
+                <div class="space-y-3">
+                    <span class="text-yellow-500 text-[10px] font-black tracking-widest uppercase product-description-text">${isEnglish ? p.category.en : p.category.ar}</span>
+                    <h1 class="text-3xl md:text-5xl font-bold leading-tight product-description-text">${isEnglish ? p.name.en : p.name.ar}</h1>
+                </div>
+                <div class="text-3xl font-light text-yellow-500">${p.price.toLocaleString()} ر.ي</div>
+                <p class="text-sm md:text-lg leading-relaxed font-light product-description-text">${isEnglish ? p.description.en : p.description.ar}</p>
+                <button onclick="addToCart(${p.id})" class="w-full py-5 bg-white text-black font-black uppercase tracking-widest rounded-full hover:bg-yellow-500 transition-all text-sm product-description-text">${isEnglish ? 'Add to Cart' : 'إضافة إلى السلة'}</button>
+                
+                <div class="flex items-center gap-6 pt-6 border-t border-white/5">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-shipping-fast text-yellow-500"></i>
+                        <span class="text-[10px] text-zinc-500 ar-text product-description-text">توصيل سريع</span>
+                        <span class="text-[10px] text-zinc-500 en-text product-description-text">Fast Delivery</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-shield-alt text-yellow-500"></i>
+                        <span class="text-[10px] text-zinc-500 ar-text product-description-text">ضمان أكسيونكس</span>
+                        <span class="text-[10px] text-zinc-500 en-text product-description-text">Axyonx Warranty</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    // باقي الدوال (مراجعة التقييمات، البحث، الدردشة، إلخ)
+    window.toggleReviewForm = function() {
+        document.getElementById('review-form-container').classList.toggle('hidden');
+    };
+
+    window.setRating = function(n) {
+        currentRating = n;
+        const stars = document.getElementById('star-selector').children;
+        for(let i=0; i<5; i++) {
+            if(i < n) stars[i].classList.add('text-yellow-500');
+            else stars[i].classList.remove('text-yellow-500');
+        }
+    };
+
+    window.submitReview = function() {
+        const name = isEnglish ? document.getElementById('rev-name-en').value : document.getElementById('rev-name').value;
+        const text = isEnglish ? document.getElementById('rev-text-en').value : document.getElementById('rev-text').value;
+        if(!name || !text || currentRating === 0) {
+            showToast(isEnglish ? "Please complete all review fields" : "يرجى إكمال جميع بيانات التقييم");
+            return;
+        }
+
+        const list = document.getElementById('reviews-list');
+        const newReview = document.createElement('div');
+        newReview.className = "review-item p-6 rounded-2xl animate-fade-in";
+        
+        let starsHtml = "";
+        for(let i=0; i<5; i++) {
+            starsHtml += `<i class="fas fa-star ${i < currentRating ? 'text-yellow-500' : 'text-zinc-800'}"></i>`;
+        }
+
+        newReview.innerHTML = `
+            <div class="flex justify-between items-start mb-3">
+                <div class="font-bold text-sm product-description-text">${name}</div>
+                <div class="star-rating text-[10px]">${starsHtml}</div>
+            </div>
+            <p class="text-sm text-zinc-400 font-light leading-relaxed product-description-text">${text}</p>
+            <div class="mt-3 text-[10px] text-zinc-600 product-description-text">${isEnglish ? 'Now' : 'الآن'}</div>
+        `;
+
+        list.prepend(newReview);
+        if(isEnglish) {
+            document.getElementById('rev-name-en').value = "";
+            document.getElementById('rev-text-en').value = "";
+        } else {
+            document.getElementById('rev-name').value = "";
+            document.getElementById('rev-text').value = "";
+        }
+        setRating(0);
+        toggleReviewForm();
+        showToast(isEnglish ? "Thank you for sharing your review" : "شكراً لمشاركتنا رأيك");
+    };
+
+    window.toggleSearch = function() { 
+        document.getElementById('search-overlay').classList.toggle('hidden'); 
+        if(!document.getElementById('search-overlay').classList.contains('hidden')) {
+            document.getElementById('search-input').focus();
+        }
+    };
+    
+    window.handleSearch = function(query) {
+        const container = document.getElementById('search-results');
+        if(!query) { container.innerHTML = ''; return; }
+        const results = PRODUCTS.filter(p => 
+            (isEnglish ? p.name.en : p.name.ar).toLowerCase().includes(query.toLowerCase()) || 
+            (isEnglish ? p.category.en : p.category.ar).toLowerCase().includes(query.toLowerCase())
+        );
+        container.innerHTML = results.map(p => `
+            <div onclick="viewProduct(${p.id}); toggleSearch();" class="flex items-center gap-4 bg-zinc-900/50 p-4 rounded-xl cursor-pointer hover:bg-yellow-500 hover:text-black">
+                <img src="${p.image}" class="w-12 h-12 rounded-lg object-cover">
+                <div class="text-sm"><div class="font-bold product-description-text">${isEnglish ? p.name.en : p.name.ar}</div><div class="opacity-60">${p.price.toLocaleString()} ر.ي</div></div>
+            </div>
+        `).join('');
+    };
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.innerText = msg;
+        toast.style.opacity = '1';
+        toast.style.pointerEvents = 'auto';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.pointerEvents = 'none';
+        }, 3000);
+    }
+
+    window.toggleChat = function() { 
+        document.getElementById('chat-window').classList.toggle('hidden'); 
+    };
+    
+    window.sendMessage = async function() {
+        const input = isEnglish ? document.getElementById('chat-input-en') : document.getElementById('chat-input');
+        const container = document.getElementById('chat-messages');
+        if (!input.value) return;
+        const userMsg = input.value;
+        container.innerHTML += `<div class="bg-yellow-500 text-black p-3 rounded-xl rounded-br-none self-end max-w-[85%] animate-fade-in">${userMsg}</div>`;
+        input.value = '';
+        container.scrollTop = container.scrollHeight;
+        
+        setTimeout(() => {
+            container.innerHTML += `<div class="bg-zinc-800 text-zinc-300 p-3 rounded-xl rounded-bl-none self-start max-w-[85%] animate-fade-in">${isEnglish ? 'We are here to serve you with the finest products. Would you like to see our luxury watches?' : 'نحن هنا لخدمتكم بأفضل المنتجات. هل ترغب برؤية الساعات الفاخرة؟'}</div>`;
+            container.scrollTop = container.scrollHeight;
+        }, 800);
+    };
+
+    // تحميل التفضيلات المحفوظة
+    window.onload = () => {
+        // تحميل الوضع
+        const savedTheme = localStorage.getItem('theme');
+        if(savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            document.querySelector('#theme-toggle i').classList.remove('fa-moon');
+            document.querySelector('#theme-toggle i').classList.add('fa-sun');
+            document.getElementById('dark-bg').style.display = 'none';
+            document.getElementById('light-bg').style.display = 'block';
+        }
+        
+        // تحميل اللغة
+        const savedLang = localStorage.getItem('lang');
+        if(savedLang === 'en') {
+            isEnglish = true;
+            document.body.dir = 'ltr';
+            document.body.lang = 'en';
+            document.querySelectorAll('.ar-text').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.en-text').forEach(el => el.style.display = 'block');
+            document.getElementById('lang-toggle').innerHTML = 'AR';
+        }
+        
+        renderFeatured();
+    };
+
+    // تأثير الشريط عند التمرير
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 40) {
+            nav.classList.add('glass-nav');
+            nav.classList.remove('py-4', 'md:py-6');
+            nav.classList.add('py-3');
+        } else {
+            nav.classList.remove('glass-nav');
+            nav.classList.remove('py-3');
+            nav.classList.add('py-4', 'md:py-6');
+        }
+    });
+</script>
 </body>
 </html>
